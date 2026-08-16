@@ -1,0 +1,1236 @@
+{
+  "cases": [
+    {
+      "anchor": {
+        "x": 196,
+        "y": 100,
+        "z": 208
+      },
+      "case_id": "clear_glass_wall",
+      "index": 1,
+      "notes": "Compares an isolated cube with the internal seams and perimeter of a 3x3 same-ID wall.",
+      "observations": [
+        {
+          "absolute": {
+            "x": 192,
+            "y": 101,
+            "z": 205
+          },
+          "block_state": "connectedglass:clear_glass",
+          "placed": true,
+          "relative": {
+            "x": -4,
+            "y": 1,
+            "z": -3
+          },
+          "role": "isolated cube"
+        },
+        {
+          "absolute": {
+            "x": 195,
+            "y": 101,
+            "z": 209
+          },
+          "block_state": "connectedglass:clear_glass",
+          "placed": true,
+          "relative": {
+            "x": -1,
+            "y": 1,
+            "z": 1
+          },
+          "role": "3x3 wall"
+        },
+        {
+          "absolute": {
+            "x": 196,
+            "y": 101,
+            "z": 209
+          },
+          "block_state": "connectedglass:clear_glass",
+          "placed": true,
+          "relative": {
+            "x": 0,
+            "y": 1,
+            "z": 1
+          },
+          "role": "3x3 wall"
+        },
+        {
+          "absolute": {
+            "x": 197,
+            "y": 101,
+            "z": 209
+          },
+          "block_state": "connectedglass:clear_glass",
+          "placed": true,
+          "relative": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "role": "3x3 wall"
+        },
+        {
+          "absolute": {
+            "x": 195,
+            "y": 102,
+            "z": 209
+          },
+          "block_state": "connectedglass:clear_glass",
+          "placed": true,
+          "relative": {
+            "x": -1,
+            "y": 2,
+            "z": 1
+          },
+          "role": "3x3 wall"
+        },
+        {
+          "absolute": {
+            "x": 196,
+            "y": 102,
+            "z": 209
+          },
+          "block_state": "connectedglass:clear_glass",
+          "placed": true,
+          "relative": {
+            "x": 0,
+            "y": 2,
+            "z": 1
+          },
+          "role": "3x3 wall"
+        },
+        {
+          "absolute": {
+            "x": 197,
+            "y": 102,
+            "z": 209
+          },
+          "block_state": "connectedglass:clear_glass",
+          "placed": true,
+          "relative": {
+            "x": 1,
+            "y": 2,
+            "z": 1
+          },
+          "role": "3x3 wall"
+        },
+        {
+          "absolute": {
+            "x": 195,
+            "y": 103,
+            "z": 209
+          },
+          "block_state": "connectedglass:clear_glass",
+          "placed": true,
+          "relative": {
+            "x": -1,
+            "y": 3,
+            "z": 1
+          },
+          "role": "3x3 wall"
+        },
+        {
+          "absolute": {
+            "x": 196,
+            "y": 103,
+            "z": 209
+          },
+          "block_state": "connectedglass:clear_glass",
+          "placed": true,
+          "relative": {
+            "x": 0,
+            "y": 3,
+            "z": 1
+          },
+          "role": "3x3 wall"
+        },
+        {
+          "absolute": {
+            "x": 197,
+            "y": 103,
+            "z": 209
+          },
+          "block_state": "connectedglass:clear_glass",
+          "placed": true,
+          "relative": {
+            "x": 1,
+            "y": 3,
+            "z": 1
+          },
+          "role": "3x3 wall"
+        }
+      ],
+      "title": "Clear glass: isolated cube and 3x3 wall"
+    },
+    {
+      "anchor": {
+        "x": 212,
+        "y": 100,
+        "z": 208
+      },
+      "case_id": "scratched_red_l",
+      "index": 2,
+      "notes": "The lower-left corner has up and east neighbors while its diagonal remains air.",
+      "observations": [
+        {
+          "absolute": {
+            "x": 210,
+            "y": 101,
+            "z": 208
+          },
+          "block_state": "connectedglass:scratched_glass_red",
+          "placed": true,
+          "relative": {
+            "x": -2,
+            "y": 1,
+            "z": 0
+          },
+          "role": "L corner"
+        },
+        {
+          "absolute": {
+            "x": 211,
+            "y": 101,
+            "z": 208
+          },
+          "block_state": "connectedglass:scratched_glass_red",
+          "placed": true,
+          "relative": {
+            "x": -1,
+            "y": 1,
+            "z": 0
+          },
+          "role": "lower arm"
+        },
+        {
+          "absolute": {
+            "x": 212,
+            "y": 101,
+            "z": 208
+          },
+          "block_state": "connectedglass:scratched_glass_red",
+          "placed": true,
+          "relative": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          },
+          "role": "lower arm"
+        },
+        {
+          "absolute": {
+            "x": 210,
+            "y": 102,
+            "z": 208
+          },
+          "block_state": "connectedglass:scratched_glass_red",
+          "placed": true,
+          "relative": {
+            "x": -2,
+            "y": 2,
+            "z": 0
+          },
+          "role": "upright arm"
+        },
+        {
+          "absolute": {
+            "x": 210,
+            "y": 103,
+            "z": 208
+          },
+          "block_state": "connectedglass:scratched_glass_red",
+          "placed": true,
+          "relative": {
+            "x": -2,
+            "y": 3,
+            "z": 0
+          },
+          "role": "upright arm"
+        },
+        {
+          "absolute": {
+            "x": 211,
+            "y": 102,
+            "z": 208
+          },
+          "block_state": "minecraft:air",
+          "placed": false,
+          "relative": {
+            "x": -1,
+            "y": 2,
+            "z": 0
+          },
+          "role": "intentional missing diagonal"
+        }
+      ],
+      "title": "Scratched red glass: L wall with missing diagonal"
+    },
+    {
+      "anchor": {
+        "x": 228,
+        "y": 100,
+        "z": 208
+      },
+      "case_id": "tinted_beside_stone",
+      "index": 3,
+      "notes": "A 2x2 tinted wall shares a vertical boundary with an opaque 2x2 vanilla stone control.",
+      "observations": [
+        {
+          "absolute": {
+            "x": 226,
+            "y": 101,
+            "z": 208
+          },
+          "block_state": "connectedglass:tinted_borderless_glass",
+          "placed": true,
+          "relative": {
+            "x": -2,
+            "y": 1,
+            "z": 0
+          },
+          "role": "2x2 tinted wall"
+        },
+        {
+          "absolute": {
+            "x": 227,
+            "y": 101,
+            "z": 208
+          },
+          "block_state": "connectedglass:tinted_borderless_glass",
+          "placed": true,
+          "relative": {
+            "x": -1,
+            "y": 1,
+            "z": 0
+          },
+          "role": "2x2 tinted wall"
+        },
+        {
+          "absolute": {
+            "x": 226,
+            "y": 102,
+            "z": 208
+          },
+          "block_state": "connectedglass:tinted_borderless_glass",
+          "placed": true,
+          "relative": {
+            "x": -2,
+            "y": 2,
+            "z": 0
+          },
+          "role": "2x2 tinted wall"
+        },
+        {
+          "absolute": {
+            "x": 227,
+            "y": 102,
+            "z": 208
+          },
+          "block_state": "connectedglass:tinted_borderless_glass",
+          "placed": true,
+          "relative": {
+            "x": -1,
+            "y": 2,
+            "z": 0
+          },
+          "role": "2x2 tinted wall"
+        },
+        {
+          "absolute": {
+            "x": 228,
+            "y": 101,
+            "z": 208
+          },
+          "block_state": "minecraft:stone",
+          "placed": true,
+          "relative": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          },
+          "role": "opaque boundary control"
+        },
+        {
+          "absolute": {
+            "x": 229,
+            "y": 101,
+            "z": 208
+          },
+          "block_state": "minecraft:stone",
+          "placed": true,
+          "relative": {
+            "x": 1,
+            "y": 1,
+            "z": 0
+          },
+          "role": "opaque boundary control"
+        },
+        {
+          "absolute": {
+            "x": 228,
+            "y": 102,
+            "z": 208
+          },
+          "block_state": "minecraft:stone",
+          "placed": true,
+          "relative": {
+            "x": 0,
+            "y": 2,
+            "z": 0
+          },
+          "role": "opaque boundary control"
+        },
+        {
+          "absolute": {
+            "x": 229,
+            "y": 102,
+            "z": 208
+          },
+          "block_state": "minecraft:stone",
+          "placed": true,
+          "relative": {
+            "x": 1,
+            "y": 2,
+            "z": 0
+          },
+          "role": "opaque boundary control"
+        }
+      ],
+      "title": "Tinted borderless glass: 2x2 beside stone"
+    },
+    {
+      "anchor": {
+        "x": 244,
+        "y": 100,
+        "z": 208
+      },
+      "case_id": "mixed_cube_boundary",
+      "index": 4,
+      "notes": "Two identical clear cubes establish the positive control before colored and borderless ID boundaries.",
+      "observations": [
+        {
+          "absolute": {
+            "x": 241,
+            "y": 101,
+            "z": 208
+          },
+          "block_state": "connectedglass:clear_glass",
+          "placed": true,
+          "relative": {
+            "x": -3,
+            "y": 1,
+            "z": 0
+          },
+          "role": "same-ID clear pair"
+        },
+        {
+          "absolute": {
+            "x": 242,
+            "y": 101,
+            "z": 208
+          },
+          "block_state": "connectedglass:clear_glass",
+          "placed": true,
+          "relative": {
+            "x": -2,
+            "y": 1,
+            "z": 0
+          },
+          "role": "same-ID clear pair"
+        },
+        {
+          "absolute": {
+            "x": 243,
+            "y": 101,
+            "z": 208
+          },
+          "block_state": "connectedglass:clear_glass_red",
+          "placed": true,
+          "relative": {
+            "x": -1,
+            "y": 1,
+            "z": 0
+          },
+          "role": "colored boundary"
+        },
+        {
+          "absolute": {
+            "x": 244,
+            "y": 101,
+            "z": 208
+          },
+          "block_state": "connectedglass:borderless_glass",
+          "placed": true,
+          "relative": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          },
+          "role": "borderless boundary"
+        }
+      ],
+      "title": "Mixed clear, colored, and borderless cube boundary"
+    },
+    {
+      "anchor": {
+        "x": 196,
+        "y": 100,
+        "z": 224
+      },
+      "case_id": "clear_pane_topologies",
+      "index": 5,
+      "notes": "Five separated pane networks lock all horizontal multipart connection combinations needed by the fixture.",
+      "observations": [
+        {
+          "absolute": {
+            "x": 192,
+            "y": 101,
+            "z": 220
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=false,north=false,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": -4,
+            "y": 1,
+            "z": -4
+          },
+          "role": "isolated pane"
+        },
+        {
+          "absolute": {
+            "x": 192,
+            "y": 101,
+            "z": 224
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=false,north=false,south=true,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": -4,
+            "y": 1,
+            "z": 0
+          },
+          "role": "straight north end"
+        },
+        {
+          "absolute": {
+            "x": 192,
+            "y": 101,
+            "z": 225
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=false,north=true,south=true,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": -4,
+            "y": 1,
+            "z": 1
+          },
+          "role": "straight middle"
+        },
+        {
+          "absolute": {
+            "x": 192,
+            "y": 101,
+            "z": 226
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=false,north=true,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": -4,
+            "y": 1,
+            "z": 2
+          },
+          "role": "straight south end"
+        },
+        {
+          "absolute": {
+            "x": 196,
+            "y": 101,
+            "z": 220
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=false,north=false,south=true,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 0,
+            "y": 1,
+            "z": -4
+          },
+          "role": "L north end"
+        },
+        {
+          "absolute": {
+            "x": 196,
+            "y": 101,
+            "z": 221
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=true,north=true,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 0,
+            "y": 1,
+            "z": -3
+          },
+          "role": "L corner"
+        },
+        {
+          "absolute": {
+            "x": 197,
+            "y": 101,
+            "z": 221
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=false,north=false,south=false,waterlogged=false,west=true]",
+          "placed": true,
+          "relative": {
+            "x": 1,
+            "y": 1,
+            "z": -3
+          },
+          "role": "L east end"
+        },
+        {
+          "absolute": {
+            "x": 196,
+            "y": 101,
+            "z": 225
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=true,north=true,south=false,waterlogged=false,west=true]",
+          "placed": true,
+          "relative": {
+            "x": 0,
+            "y": 1,
+            "z": 1
+          },
+          "role": "T center"
+        },
+        {
+          "absolute": {
+            "x": 196,
+            "y": 101,
+            "z": 224
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=false,north=false,south=true,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          },
+          "role": "T north end"
+        },
+        {
+          "absolute": {
+            "x": 197,
+            "y": 101,
+            "z": 225
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=false,north=false,south=false,waterlogged=false,west=true]",
+          "placed": true,
+          "relative": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "role": "T east end"
+        },
+        {
+          "absolute": {
+            "x": 195,
+            "y": 101,
+            "z": 225
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=true,north=false,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": -1,
+            "y": 1,
+            "z": 1
+          },
+          "role": "T west end"
+        },
+        {
+          "absolute": {
+            "x": 200,
+            "y": 101,
+            "z": 225
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=true,north=true,south=true,waterlogged=false,west=true]",
+          "placed": true,
+          "relative": {
+            "x": 4,
+            "y": 1,
+            "z": 1
+          },
+          "role": "cross center"
+        },
+        {
+          "absolute": {
+            "x": 200,
+            "y": 101,
+            "z": 224
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=false,north=false,south=true,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 4,
+            "y": 1,
+            "z": 0
+          },
+          "role": "cross north end"
+        },
+        {
+          "absolute": {
+            "x": 201,
+            "y": 101,
+            "z": 225
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=false,north=false,south=false,waterlogged=false,west=true]",
+          "placed": true,
+          "relative": {
+            "x": 5,
+            "y": 1,
+            "z": 1
+          },
+          "role": "cross east end"
+        },
+        {
+          "absolute": {
+            "x": 200,
+            "y": 101,
+            "z": 226
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=false,north=true,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 4,
+            "y": 1,
+            "z": 2
+          },
+          "role": "cross south end"
+        },
+        {
+          "absolute": {
+            "x": 199,
+            "y": 101,
+            "z": 225
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=true,north=false,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 3,
+            "y": 1,
+            "z": 1
+          },
+          "role": "cross west end"
+        }
+      ],
+      "title": "Clear pane: isolated, straight, L, T, and cross"
+    },
+    {
+      "anchor": {
+        "x": 212,
+        "y": 100,
+        "z": 224
+      },
+      "case_id": "red_pane_stacks",
+      "index": 6,
+      "notes": "Duplicated vertical layers exercise pane top/bottom culling without changing horizontal state properties.",
+      "observations": [
+        {
+          "absolute": {
+            "x": 208,
+            "y": 101,
+            "z": 223
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=false,north=false,south=true,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": -4,
+            "y": 1,
+            "z": -1
+          },
+          "role": "two-high straight north end"
+        },
+        {
+          "absolute": {
+            "x": 208,
+            "y": 102,
+            "z": 223
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=false,north=false,south=true,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": -4,
+            "y": 2,
+            "z": -1
+          },
+          "role": "two-high straight north end"
+        },
+        {
+          "absolute": {
+            "x": 208,
+            "y": 101,
+            "z": 224
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=false,north=true,south=true,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": -4,
+            "y": 1,
+            "z": 0
+          },
+          "role": "two-high straight middle"
+        },
+        {
+          "absolute": {
+            "x": 208,
+            "y": 102,
+            "z": 224
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=false,north=true,south=true,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": -4,
+            "y": 2,
+            "z": 0
+          },
+          "role": "two-high straight middle"
+        },
+        {
+          "absolute": {
+            "x": 208,
+            "y": 101,
+            "z": 225
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=false,north=true,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": -4,
+            "y": 1,
+            "z": 1
+          },
+          "role": "two-high straight south end"
+        },
+        {
+          "absolute": {
+            "x": 208,
+            "y": 102,
+            "z": 225
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=false,north=true,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": -4,
+            "y": 2,
+            "z": 1
+          },
+          "role": "two-high straight south end"
+        },
+        {
+          "absolute": {
+            "x": 215,
+            "y": 101,
+            "z": 224
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=true,north=true,south=true,waterlogged=false,west=true]",
+          "placed": true,
+          "relative": {
+            "x": 3,
+            "y": 1,
+            "z": 0
+          },
+          "role": "two-high cross center"
+        },
+        {
+          "absolute": {
+            "x": 215,
+            "y": 101,
+            "z": 223
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=false,north=false,south=true,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 3,
+            "y": 1,
+            "z": -1
+          },
+          "role": "two-high cross north end"
+        },
+        {
+          "absolute": {
+            "x": 216,
+            "y": 101,
+            "z": 224
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=false,north=false,south=false,waterlogged=false,west=true]",
+          "placed": true,
+          "relative": {
+            "x": 4,
+            "y": 1,
+            "z": 0
+          },
+          "role": "two-high cross east end"
+        },
+        {
+          "absolute": {
+            "x": 215,
+            "y": 101,
+            "z": 225
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=false,north=true,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 3,
+            "y": 1,
+            "z": 1
+          },
+          "role": "two-high cross south end"
+        },
+        {
+          "absolute": {
+            "x": 214,
+            "y": 101,
+            "z": 224
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=true,north=false,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 2,
+            "y": 1,
+            "z": 0
+          },
+          "role": "two-high cross west end"
+        },
+        {
+          "absolute": {
+            "x": 215,
+            "y": 102,
+            "z": 224
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=true,north=true,south=true,waterlogged=false,west=true]",
+          "placed": true,
+          "relative": {
+            "x": 3,
+            "y": 2,
+            "z": 0
+          },
+          "role": "two-high cross center"
+        },
+        {
+          "absolute": {
+            "x": 215,
+            "y": 102,
+            "z": 223
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=false,north=false,south=true,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 3,
+            "y": 2,
+            "z": -1
+          },
+          "role": "two-high cross north end"
+        },
+        {
+          "absolute": {
+            "x": 216,
+            "y": 102,
+            "z": 224
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=false,north=false,south=false,waterlogged=false,west=true]",
+          "placed": true,
+          "relative": {
+            "x": 4,
+            "y": 2,
+            "z": 0
+          },
+          "role": "two-high cross east end"
+        },
+        {
+          "absolute": {
+            "x": 215,
+            "y": 102,
+            "z": 225
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=false,north=true,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 3,
+            "y": 2,
+            "z": 1
+          },
+          "role": "two-high cross south end"
+        },
+        {
+          "absolute": {
+            "x": 214,
+            "y": 102,
+            "z": 224
+          },
+          "block_state": "connectedglass:borderless_glass_red_pane[east=true,north=false,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 2,
+            "y": 2,
+            "z": 0
+          },
+          "role": "two-high cross west end"
+        }
+      ],
+      "title": "Borderless red pane: two-high straight and cross stacks"
+    },
+    {
+      "anchor": {
+        "x": 228,
+        "y": 100,
+        "z": 224
+      },
+      "case_id": "mixed_and_waterlogged_panes",
+      "index": 7,
+      "notes": "Adjacent distinct pane IDs connect geometrically but retain separate material identity; a same-ID cross contains one waterlogged center.",
+      "observations": [
+        {
+          "absolute": {
+            "x": 224,
+            "y": 101,
+            "z": 221
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=true,north=false,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": -4,
+            "y": 1,
+            "z": -3
+          },
+          "role": "mixed boundary: clear"
+        },
+        {
+          "absolute": {
+            "x": 225,
+            "y": 101,
+            "z": 221
+          },
+          "block_state": "connectedglass:clear_glass_red_pane[east=true,north=false,south=false,waterlogged=false,west=true]",
+          "placed": true,
+          "relative": {
+            "x": -3,
+            "y": 1,
+            "z": -3
+          },
+          "role": "mixed boundary: red"
+        },
+        {
+          "absolute": {
+            "x": 226,
+            "y": 101,
+            "z": 221
+          },
+          "block_state": "connectedglass:borderless_glass_pane[east=false,north=false,south=false,waterlogged=false,west=true]",
+          "placed": true,
+          "relative": {
+            "x": -2,
+            "y": 1,
+            "z": -3
+          },
+          "role": "mixed boundary: borderless"
+        },
+        {
+          "absolute": {
+            "x": 230,
+            "y": 101,
+            "z": 224
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=false,north=false,south=true,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 2,
+            "y": 1,
+            "z": 0
+          },
+          "role": "waterlogged cross north end"
+        },
+        {
+          "absolute": {
+            "x": 231,
+            "y": 101,
+            "z": 225
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=false,north=false,south=false,waterlogged=false,west=true]",
+          "placed": true,
+          "relative": {
+            "x": 3,
+            "y": 1,
+            "z": 1
+          },
+          "role": "waterlogged cross east end"
+        },
+        {
+          "absolute": {
+            "x": 230,
+            "y": 101,
+            "z": 226
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=false,north=true,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 2,
+            "y": 1,
+            "z": 2
+          },
+          "role": "waterlogged cross south end"
+        },
+        {
+          "absolute": {
+            "x": 229,
+            "y": 101,
+            "z": 225
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=true,north=false,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "role": "waterlogged cross west end"
+        },
+        {
+          "absolute": {
+            "x": 230,
+            "y": 101,
+            "z": 225
+          },
+          "block_state": "connectedglass:clear_glass_pane[east=true,north=true,south=true,waterlogged=true,west=true]",
+          "placed": true,
+          "relative": {
+            "x": 2,
+            "y": 1,
+            "z": 1
+          },
+          "role": "contained waterlogged cross center"
+        }
+      ],
+      "title": "Mixed pane boundary and contained waterlogged pane"
+    },
+    {
+      "anchor": {
+        "x": 244,
+        "y": 100,
+        "z": 224
+      },
+      "case_id": "vanilla_controls",
+      "index": 8,
+      "notes": "A same-ID vanilla glass pair, isolated vanilla pane, and isolated stone remain outside the add-on route.",
+      "observations": [
+        {
+          "absolute": {
+            "x": 240,
+            "y": 101,
+            "z": 224
+          },
+          "block_state": "minecraft:glass",
+          "placed": true,
+          "relative": {
+            "x": -4,
+            "y": 1,
+            "z": 0
+          },
+          "role": "vanilla glass pair"
+        },
+        {
+          "absolute": {
+            "x": 241,
+            "y": 101,
+            "z": 224
+          },
+          "block_state": "minecraft:glass",
+          "placed": true,
+          "relative": {
+            "x": -3,
+            "y": 1,
+            "z": 0
+          },
+          "role": "vanilla glass pair"
+        },
+        {
+          "absolute": {
+            "x": 244,
+            "y": 101,
+            "z": 224
+          },
+          "block_state": "minecraft:glass_pane[east=false,north=false,south=false,waterlogged=false,west=false]",
+          "placed": true,
+          "relative": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          },
+          "role": "isolated vanilla pane"
+        },
+        {
+          "absolute": {
+            "x": 248,
+            "y": 101,
+            "z": 224
+          },
+          "block_state": "minecraft:stone",
+          "placed": true,
+          "relative": {
+            "x": 4,
+            "y": 1,
+            "z": 0
+          },
+          "role": "isolated stone"
+        }
+      ],
+      "title": "Vanilla glass, pane, and stone controls"
+    }
+  ],
+  "counts": {
+    "cells": 8,
+    "connected_glass_cube_placements": 23,
+    "connected_glass_pane_placements": 40,
+    "negative_space_observations": 1,
+    "observations": 72,
+    "placements": 71,
+    "vanilla_placements": 8,
+    "waterlogged_panes": 1
+  },
+  "evidence": {
+    "all_the_mons": "1.2.0",
+    "connected_glass": {
+      "filename": "connectedglass-1.1.14-neoforge-mc1.21.jar",
+      "sha256": "e5b2a1cd8ef1b8a49a322aeccfc5cd9a53d8303613b9f30718f12a1e525d49fe",
+      "size_bytes": 819976,
+      "version": "1.1.14"
+    },
+    "fusion": {
+      "filename": "fusion-1.3.12-neoforge-mc1.21.1.jar",
+      "sha256": "17f5215648a98bcde4134577b013200dbf363273ae282449c51408ae8346f2fa",
+      "size_bytes": 923270,
+      "version": "1.3.12"
+    },
+    "minecraft": "1.21.1"
+  },
+  "gallery": {
+    "dimension": "minecraft:overworld",
+    "floor_y": 100,
+    "pose": {
+      "pitch": 24,
+      "x": 220,
+      "y": 122,
+      "yaw": 180,
+      "z": 259
+    },
+    "region_max": {
+      "x": 251,
+      "y": 106,
+      "z": 231
+    },
+    "region_min": {
+      "x": 189,
+      "y": 100,
+      "z": 201
+    }
+  },
+  "schema": 1
+}

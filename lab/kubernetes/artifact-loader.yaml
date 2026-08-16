@@ -1,0 +1,93 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: connectedglass-artifact-loader
+  namespace: bluemap-sophisticated-staging
+  labels:
+    app.kubernetes.io/name: connectedglass-artifact-loader
+    app.kubernetes.io/part-of: bluemap-sophisticated-staging
+    app.kubernetes.io/component: connected-glass
+spec:
+  restartPolicy: Never
+  automountServiceAccountToken: false
+  terminationGracePeriodSeconds: 5
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    fsGroupChangePolicy: OnRootMismatch
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+    - name: loader
+      image: busybox@sha256:9532d8c39891ca2ecde4d30d7710e01fb739c87a8b9299685c63704296b16028
+      command:
+        - sh
+        - -eu
+        - -c
+        - |
+          artifact_dir=/data/.bluemap-sophisticated-staging
+          mkdir -p "${artifact_dir}"
+          rm -f "${artifact_dir}/.connectedglass-upload-complete" \
+            "${artifact_dir}/.connectedglass-artifacts-verified"
+          printf 'READY_FOR_UPLOAD\n'
+
+          remaining=1800
+          while [ ! -e "${artifact_dir}/.connectedglass-upload-complete" ]; do
+            if [ "${remaining}" -le 0 ]; then
+              printf 'Timed out waiting for the atomic upload marker.\n' >&2
+              exit 1
+            fi
+            remaining=$((remaining - 2))
+            sleep 2
+          done
+
+          server="${artifact_dir}/ServerFiles-1.2.0.zip"
+          bluemap="${artifact_dir}/bluemap.jar"
+          addon="${artifact_dir}/bluemap-connectedglass-addon-0.1.0-alpha.1.jar"
+          gallery="${artifact_dir}/bluemap-connectedglass-gallery-atmons-1.2.0.zip"
+          connectedglass=/data/mods/connectedglass-1.1.14-neoforge-mc1.21.jar
+          fusion=/data/mods/fusion-1.3.12-neoforge-mc1.21.1.jar
+          test "$(stat -c %s "${server}")" -eq 1055896389
+          test "$(stat -c %s "${bluemap}")" -eq 6467235
+          test "$(stat -c %s "${connectedglass}")" -eq 819976
+          test "$(stat -c %s "${fusion}")" -eq 923270
+          test "$(stat -c %s "${addon}")" -eq 155396
+          test "$(stat -c %s "${gallery}")" -eq 11686
+          printf '%s  %s\n' \
+            'de112ed8d79b3ff027e399a5108b706f6a2db3be74b15d0db6f6b9d6ac268e6c' "${server}" \
+            '749f7647fa29764cea113114a7ab3259271bab3da22720989f2bd9fd1f3ba150' "${bluemap}" \
+            'e5b2a1cd8ef1b8a49a322aeccfc5cd9a53d8303613b9f30718f12a1e525d49fe' "${connectedglass}" \
+            '17f5215648a98bcde4134577b013200dbf363273ae282449c51408ae8346f2fa' "${fusion}" \
+            'eb1dc07a6f9906f83a710e175cb8c119f0464bda73f651fa13a6e24900ffb70e' "${addon}" \
+            '3d1d004acab93d725e4437d3d900a884b2a113caaeb04025b9c15030eaa12f78' "${gallery}" \
+            | sha256sum -c -
+          chmod 0444 "${server}" "${bluemap}" "${addon}" "${gallery}"
+          cat > "${artifact_dir}/.connectedglass-artifacts-verified" <<'EOF'
+          bluemap-connectedglass-addon-0.1.0-alpha.1.jar 155396 eb1dc07a6f9906f83a710e175cb8c119f0464bda73f651fa13a6e24900ffb70e
+          bluemap-connectedglass-gallery-atmons-1.2.0.zip 11686 3d1d004acab93d725e4437d3d900a884b2a113caaeb04025b9c15030eaa12f78
+          connectedglass-1.1.14-neoforge-mc1.21.jar 819976 e5b2a1cd8ef1b8a49a322aeccfc5cd9a53d8303613b9f30718f12a1e525d49fe
+          fusion-1.3.12-neoforge-mc1.21.1.jar 923270 17f5215648a98bcde4134577b013200dbf363273ae282449c51408ae8346f2fa
+          EOF
+          printf 'LOCAL_ARTIFACTS_VERIFIED\n'
+      resources:
+        requests:
+          cpu: 10m
+          memory: 32Mi
+        limits:
+          cpu: 250m
+          memory: 128Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities:
+          drop:
+            - ALL
+      volumeMounts:
+        - name: data
+          mountPath: /data
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: data

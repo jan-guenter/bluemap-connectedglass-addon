@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bluemap-connectedglass-staging-pins
+  namespace: bluemap-sophisticated-staging
+  labels:
+    app.kubernetes.io/part-of: bluemap-sophisticated-staging
+    app.kubernetes.io/component: connected-glass
+data:
+  server-archive-size: "1055896389"
+  server-archive-sha256: "de112ed8d79b3ff027e399a5108b706f6a2db3be74b15d0db6f6b9d6ac268e6c"
+  bluemap-size: "6467235"
+  bluemap-sha256: "749f7647fa29764cea113114a7ab3259271bab3da22720989f2bd9fd1f3ba150"
+  connectedglass-size: "819976"
+  connectedglass-sha256: "e5b2a1cd8ef1b8a49a322aeccfc5cd9a53d8303613b9f30718f12a1e525d49fe"
+  fusion-size: "923270"
+  fusion-sha256: "17f5215648a98bcde4134577b013200dbf363273ae282449c51408ae8346f2fa"
+  addon-size: "155396"
+  addon-sha256: "eb1dc07a6f9906f83a710e175cb8c119f0464bda73f651fa13a6e24900ffb70e"
+  gallery-size: "11686"
+  gallery-sha256: "3d1d004acab93d725e4437d3d900a884b2a113caaeb04025b9c15030eaa12f78"
