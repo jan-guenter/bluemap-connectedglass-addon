@@ -47,8 +47,11 @@ host:
 
 The final observed state was zero Deployment replicas and no Minecraft Pods.
 The active public map output was deliberately replaced by the stock rollback
-render, so the host is not currently presenting the candidate for owner review.
-Owner visual acceptance and publication remain pending.
+render, so the host is not currently presenting the candidate for review. The
+owner explicitly accepted the previously presented active candidate on
+2026-08-16 and authorized its immutable `0.1.0-alpha.1` prerelease
+publication. The disposable host remains scaled to zero; acceptance does not
+authorize production deployment.
 
 ## Controlled sequence
 

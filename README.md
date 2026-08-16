@@ -4,8 +4,10 @@ This standalone MIT BlueMap add-on restores the connected textures and pane
 models installed by Connected Glass 1.1.14 and Fusion 1.3.12 on the exact All
 the Mons 1.2.0 baseline. The frozen `0.1.0-alpha.1` candidate passed its
 technical staging, exact-client calibration, disabled-control, and physical
-rollback gates on 2026-08-16. Owner visual acceptance and publication remain
-pending, so this is not yet a supported release.
+rollback gates on 2026-08-16. The owner explicitly accepted the candidate's
+visual result on 2026-08-16 and authorized publication as the immutable
+`0.1.0-alpha.1` prerelease. That acceptance does not authorize production
+deployment or establish a supported production release.
 
 ## Exact contract
 
@@ -78,9 +80,12 @@ On the reusable disposable host, the 2026-08-16 lifecycle established:
 
 The agent-side BlueMap sanity check passed while the active candidate was
 rendered. The later rollback deliberately replaced that output with the stock
-control, so it is not a current owner-review endpoint. These technical results
-do not constitute owner visual acceptance or release authorization. See
-[docs/STAGING.md](docs/STAGING.md) and [docs/ROLLBACK.md](docs/ROLLBACK.md).
+control, so it is not a current review endpoint. After reviewing the active
+gallery presentation, the owner explicitly accepted the exact frozen
+candidate on 2026-08-16 and authorized its immutable `0.1.0-alpha.1`
+prerelease publication. This is release authorization only, not production
+deployment authorization. See [docs/STAGING.md](docs/STAGING.md) and
+[docs/ROLLBACK.md](docs/ROLLBACK.md).
 
 ## Generate and validate
 

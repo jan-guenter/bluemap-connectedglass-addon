@@ -29,9 +29,11 @@ BlueMap implementation classes. The complete factual record is
 The frozen 2026-08-16 candidate embeds that file verbatim, including
 `"status": "unreleased-implementation"`. This value is an artifact-time marker
 for the state in which the candidate bytes were frozen, not a mutable summary
-of later operational tests. It remains accurate while owner acceptance and
-publication are pending. It must not be rewritten merely to retrofit the
-subsequent staging, exact-client, disabled-control, or rollback results into
-the already identified candidate; those observations are recorded in the
-project documentation instead. A future version may update the marker through
-the normal reviewed build and release process.
+of later operational or release status. The owner's subsequent 2026-08-16
+visual acceptance and authorization to publish the exact candidate as
+immutable prerelease `0.1.0-alpha.1` do not make the artifact-time marker
+false. It must not be rewritten merely to retrofit staging, exact-client,
+disabled-control, rollback, acceptance, or publication results into the
+already identified candidate; those observations are recorded in the project
+documentation instead. A future version may update the marker through the
+normal reviewed build and release process.

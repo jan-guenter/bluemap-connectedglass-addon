@@ -2,8 +2,10 @@
 
 The frozen 155,396-byte candidate with SHA-256
 `eb1dc07a6f9906f83a710e175cb8c119f0464bda73f651fa13a6e24900ffb70e`
-passed the technical disposable-host gate on 2026-08-16. This pass does not
-include owner visual acceptance and does not authorize publication or
+passed the technical disposable-host gate on 2026-08-16. After reviewing the
+active gallery presentation, the owner explicitly accepted this exact
+candidate on 2026-08-16 and authorized immutable `0.1.0-alpha.1` prerelease
+publication. Acceptance does not authorize production deployment or
 production use. Use only the reusable disposable BlueMap namespace/PVC
 authorized by the workspace; never production.
 
@@ -35,7 +37,8 @@ representative custom cube and pane cells. In particular, the two-block-high
 straight and cross pane stacks had no internal horizontal caps in either view.
 An agent opened the exact active BlueMap URL and confirmed that the intended
 map/view was not blank, black, missing, or grossly broken. This lightweight
-check is not owner acceptance.
+check preceded and did not substitute for the owner's later explicit visual
+acceptance of the candidate on 2026-08-16.
 
 The restart-scoped disabled control reported an inactive
 `operator-disabled` route with `catalogSize=null` and produced the expected
@@ -45,7 +48,7 @@ render completed with 23 tile files and no relevant errors. The Deployment was
 finally scaled to zero and its Pods removed. Consequently, the prior public
 active render is no longer a live candidate-review endpoint.
 
-## Reproduction and owner-acceptance gate
+## Reproduction and future owner-acceptance gate
 
 Before starting:
 
@@ -74,6 +77,10 @@ Inspect both two-layer pane stacks against the exact client before accepting a
 changed candidate's vertical-cap behavior. Also inspect all other custom cells
 and unchanged vanilla controls, then open the exact BlueMap URL for a
 lightweight sanity check and obtain explicit owner visual acceptance.
+
+The recorded acceptance applies only to the frozen `0.1.0-alpha.1` identities
+above. Any changed artifact, profile, renderer, or generated gallery requires
+a fresh technical gate and explicit owner visual acceptance.
 
 Finally perform a restart-scoped disable/stock comparison and a
 physical-removal plus clean-restart rollback. The disable property is read at

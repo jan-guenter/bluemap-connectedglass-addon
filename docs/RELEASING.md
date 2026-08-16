@@ -1,10 +1,13 @@
 # Releasing
 
-There is no release authorization yet. The frozen candidate passed exact-client
-pane calibration, isolated BlueMap staging, the restart-scoped disabled
-control, and physical rollback on 2026-08-16. Owner visual acceptance remains
-pending and is a release blocker; technical completion alone does not permit a
-merge, tag, Maven publication, or GitHub Release.
+The owner explicitly accepted the frozen candidate's visual result on
+2026-08-16 after its exact-client pane calibration, isolated BlueMap staging,
+restart-scoped disabled control, and physical rollback passed. Publication of
+the exact assets below as immutable prerelease `0.1.0-alpha.1` is authorized,
+including the reviewed merge, annotated tag, Maven publication, and GitHub
+Release required by this procedure. This candidate-specific authorization does
+not authorize production deployment, alter production state, or establish a
+supported production version.
 
 The intended coordinates are:
 
@@ -25,6 +28,10 @@ The frozen candidate asset identities are:
 
 Documentation and workflow hardening may occur after the candidate freeze only
 if the release gate proves the five asset identities above unchanged.
+
+Release authorization is limited to the exact five identities above and the
+bounded release contents described here. Any changed release asset requires a
+new freeze, validation cycle, and explicit owner acceptance.
 
 Before tagging:
 

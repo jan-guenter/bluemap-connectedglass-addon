@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0-alpha.1 — unreleased candidate
+## 0.1.0-alpha.1 — 2026-08-16
 
 - Lock the exact Connected Glass 1.1.14 and Fusion 1.3.12 artifacts from All
   the Mons 1.2.0.
@@ -13,4 +13,7 @@
 - Pass the 2026-08-16 isolated BlueMap active-route/gallery render, exact-client
   vertical-pane calibration, restart-scoped disabled control, and physical-JAR
   rollback lifecycle with the 155,396-byte frozen candidate.
-- Keep owner visual acceptance and publication explicitly pending.
+- Receive explicit owner visual acceptance on 2026-08-16 and authorization to
+  publish these exact frozen assets as immutable prerelease `0.1.0-alpha.1`.
+- Keep production deployment and production-support claims explicitly out of
+  scope.
