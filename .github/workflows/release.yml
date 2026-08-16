@@ -14,6 +14,7 @@ on:
 permissions:
   contents: write
   packages: write
+  pull-requests: read
   attestations: write
   id-token: write
 
@@ -28,7 +29,7 @@ concurrency:
 jobs:
   release:
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - name: Check out tagged source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -37,7 +38,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Verify release identity
+      - name: Verify tag, version, and main-branch identity
         run: |
           version="$(sed -n 's/^addon_version=//p' gradle.properties)"
           test -n "${version}"
@@ -52,6 +53,98 @@ jobs:
           git fetch --no-tags origin main:refs/remotes/origin/main
           git merge-base --is-ancestor HEAD refs/remotes/origin/main
           echo "VERSION=${version}" >> "${GITHUB_ENV}"
+
+      - name: Require merged pull request and version introduction or increase
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          commit="$(git rev-parse HEAD)"
+          mapfile -t candidates < <(gh api \
+            -H 'Accept: application/vnd.github+json' \
+            "repos/${GITHUB_REPOSITORY}/commits/${commit}/pulls" \
+            --jq ".[] | select(.merged_at != null and .base.ref == \"main\" and .merge_commit_sha == \"${commit}\") | [.number, .base.sha] | @tsv")
+          test "${#candidates[@]}" -gt 0
+
+          cat > "${RUNNER_TEMP}/verify-version-increase.py" <<'PY'
+          import re
+          import sys
+
+          pattern = re.compile(
+              r"^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)"
+              r"(?:-([0-9A-Za-z.-]+))?(?:\+[0-9A-Za-z.-]+)?$"
+          )
+
+
+          def parse(value):
+              match = pattern.fullmatch(value)
+              if match is None:
+                  raise ValueError(f"not semantic version: {value}")
+              core = tuple(int(item) for item in match.group(1, 2, 3))
+              pre = match.group(4)
+              if pre is None:
+                  return core, None
+              identifiers = []
+              for item in pre.split("."):
+                  if not item:
+                      raise ValueError(f"empty prerelease identifier: {value}")
+                  identifiers.append(int(item) if item.isdigit() else item)
+              return core, identifiers
+
+
+          def prerelease_greater(new, old):
+              if old is None:
+                  return False
+              if new is None:
+                  return True
+              for left, right in zip(new, old):
+                  if left == right:
+                      continue
+                  if isinstance(left, int) and isinstance(right, str):
+                      return False
+                  if isinstance(left, str) and isinstance(right, int):
+                      return True
+                  return left > right
+              return len(new) > len(old)
+
+
+          new_value, old_value, status = sys.argv[1:]
+          new_core, new_pre = parse(new_value)
+          if status == "added" and not old_value:
+              raise SystemExit(0)
+          old_core, old_pre = parse(old_value)
+          if new_core > old_core or (
+              new_core == old_core and prerelease_greater(new_pre, old_pre)
+          ):
+              raise SystemExit(0)
+          raise SystemExit(
+              f"addon_version did not increase: {old_value} -> {new_value}"
+          )
+          PY
+
+          reviewed_pr=''
+          for candidate in "${candidates[@]}"; do
+            IFS=$'\t' read -r number base_sha <<< "${candidate}"
+            status="$(gh api --paginate \
+              "repos/${GITHUB_REPOSITORY}/pulls/${number}/files" \
+              --jq '.[] | select(.filename == "gradle.properties") | .status' \
+              | head -n 1)"
+            if [[ "${status}" != added && "${status}" != modified ]]; then
+              continue
+            fi
+            old_version=''
+            if [[ "${status}" == modified ]]; then
+              old_version="$(git show "${base_sha}:gradle.properties" \
+                | sed -n 's/^addon_version=//p')"
+              test -n "${old_version}"
+            fi
+            if python3 "${RUNNER_TEMP}/verify-version-increase.py" \
+              "${VERSION}" "${old_version}" "${status}"; then
+              reviewed_pr="${number}"
+              break
+            fi
+          done
+          test -n "${reviewed_pr}"
+          echo "RELEASE_PR=${reviewed_pr}" >> "${GITHUB_ENV}"
 
       - name: Check out exact BlueMap backport
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -73,10 +166,10 @@ jobs:
         with:
           python-version: '3.13'
 
-      - name: Set up Gradle 9.4.0
+      - name: Set up Gradle 9.6.1
         uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
         with:
-          gradle-version: '9.4.0'
+          gradle-version: '9.6.1'
 
       - name: Acquire exact ephemeral runtime input
         run: |
@@ -88,8 +181,19 @@ jobs:
           curl --fail --location --retry 3 --retry-all-errors \
             --output "${input_dir}/fusion-1.3.12-neoforge-mc1.21.1.jar" \
             "https://cdn.modrinth.com/data/p19vrgc2/versions/6Oxgpgr9/fusion-1.3.12-neoforge-mc1.21.1.jar"
+          test "$(stat -c %s "${input_dir}/connectedglass-1.1.14-neoforge-mc1.21.jar")" \
+            -eq 819976
+          test "$(stat -c %s "${input_dir}/fusion-1.3.12-neoforge-mc1.21.1.jar")" \
+            -eq 923270
+          (
+            cd "${input_dir}"
+            sha256sum --check <<'SHA256SUMS'
+          e5b2a1cd8ef1b8a49a322aeccfc5cd9a53d8303613b9f30718f12a1e525d49fe  connectedglass-1.1.14-neoforge-mc1.21.jar
+          17f5215648a98bcde4134577b013200dbf363273ae282449c51408ae8346f2fa  fusion-1.3.12-neoforge-mc1.21.1.jar
+          SHA256SUMS
+          )
 
-      - name: Build and verify release once
+      - name: Build, test, and verify the release twice
         run: |
           input_dir="${RUNNER_TEMP}/connectedglass"
           python3 gallery/generate.py --check \
@@ -99,12 +203,46 @@ jobs:
           (cd gallery && sha256sum --check SHA256SUMS)
           python3 -m unittest discover -s tools/tests -p 'test_*.py'
           python3 -m unittest discover -s gallery/tests -p 'test_*.py'
-          gradle --no-daemon \
-            -PbluemapSourcePath=.ci/bluemap \
-            -PconnectedglassJar="${input_dir}/connectedglass-1.1.14-neoforge-mc1.21.jar" \
-            -PfusionJar="${input_dir}/fusion-1.3.12-neoforge-mc1.21.1.jar" \
-            clean check build generatePomFileForAddonPublication \
-            generateMetadataFileForAddonPublication verifyPinnedArtifacts
+          build_all() {
+            gradle --no-daemon \
+              -PbluemapSourcePath=.ci/bluemap \
+              -PconnectedglassJar="${input_dir}/connectedglass-1.1.14-neoforge-mc1.21.jar" \
+              -PfusionJar="${input_dir}/fusion-1.3.12-neoforge-mc1.21.1.jar" \
+              clean check build generatePomFileForAddonPublication \
+              generateMetadataFileForAddonPublication verifyPinnedArtifacts \
+              verifyPublicationMetadata
+          }
+          build_all
+          first="${RUNNER_TEMP}/first-build"
+          mkdir -p "${first}"
+          cp "build/libs/bluemap-connectedglass-addon-${VERSION}.jar" \
+            "${first}/addon.jar"
+          cp "build/libs/bluemap-connectedglass-addon-${VERSION}-sources.jar" \
+            "${first}/sources.jar"
+          cp build/publications/addon/pom-default.xml "${first}/pom.xml"
+          cp build/publications/addon/module.json "${first}/module.json"
+          build_all
+          cmp "${first}/addon.jar" \
+            "build/libs/bluemap-connectedglass-addon-${VERSION}.jar"
+          cmp "${first}/sources.jar" \
+            "build/libs/bluemap-connectedglass-addon-${VERSION}-sources.jar"
+          cmp "${first}/pom.xml" build/publications/addon/pom-default.xml
+          cmp "${first}/module.json" build/publications/addon/module.json
+
+          test "$(stat -c %s "build/libs/bluemap-connectedglass-addon-${VERSION}.jar")" \
+            -eq 155396
+          test "$(stat -c %s "build/libs/bluemap-connectedglass-addon-${VERSION}-sources.jar")" \
+            -eq 92165
+          test "$(stat -c %s build/publications/addon/pom-default.xml)" \
+            -eq 1375
+          test "$(stat -c %s build/publications/addon/module.json)" \
+            -eq 2868
+          sha256sum --check <<SHA256SUMS
+          eb1dc07a6f9906f83a710e175cb8c119f0464bda73f651fa13a6e24900ffb70e  build/libs/bluemap-connectedglass-addon-${VERSION}.jar
+          a2f65dd74c439ab6b1152db6e3255a7f4d282b4870b56c0c8e7f1ee65f2999f9  build/libs/bluemap-connectedglass-addon-${VERSION}-sources.jar
+          87489782df3acdad2046243d840bb4f1d81cf5cf685298f66072f6b883d0dc38  build/publications/addon/pom-default.xml
+          209c4f441d9e2e5a3eb0da13a136c955d54de7cc09875bb677317a2aed6c1c8b  build/publications/addon/module.json
+          SHA256SUMS
 
       - name: Prepare release bundle
         run: |
@@ -117,6 +255,11 @@ jobs:
             "release/bluemap-connectedglass-addon-${VERSION}.module.json"
           cd release
           sha256sum -- ./* > SHA256SUMS
+          test "$(find . -maxdepth 1 -type f | wc -l)" -eq 5
+          sha256sum --check SHA256SUMS
+          test "$(stat -c %s SHA256SUMS)" -eq 476
+          test "$(sha256sum SHA256SUMS | cut -d ' ' -f 1)" = \
+            ca45c8f69e865d0d47ce665355e28069d6d928ff806c6f86d2e686b47fcb7cdc
 
       - name: Inspect immutable Maven version
         id: maven
@@ -278,6 +421,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          notes='Owner-accepted exact All the Mons 1.2.0 prerelease for Connected Glass 1.1.14, Fusion 1.3.12, and the Java 21 BlueMap 5.22 backport. It covers the locked 119 connectedglass block IDs and 1,700 legal states. Activation requires the byte-exact operator-installed Connected Glass and Fusion resources; those All Rights Reserved artifacts are not distributed. This is not a generic compatibility or production-deployment claim.'
           release_kind=()
           if [[ "${VERSION}" == *-* ]]; then
             release_kind+=(--prerelease)
@@ -292,6 +436,7 @@ jobs:
                 --draft \
                 "${release_kind[@]}" \
                 --title "BlueMap Connected Glass Add-on ${VERSION}" \
+                --notes "${notes}" \
                 --verify-tag
               gh release upload "${RELEASE_TAG}" release/* --clobber
               echo 'already_published=false' >> "${GITHUB_OUTPUT}"
@@ -303,7 +448,7 @@ jobs:
             gh release create "${RELEASE_TAG}" release/* \
               "${release_kind[@]}" \
               --draft \
-              --generate-notes \
+              --notes "${notes}" \
               --title "BlueMap Connected Glass Add-on ${VERSION}" \
               --verify-tag
             echo 'already_published=false' >> "${GITHUB_OUTPUT}"

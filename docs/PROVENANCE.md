@@ -25,3 +25,13 @@ The binary and sources JAR audits reject Connected Glass/Fusion namespaces,
 third-party classes, data/assets, nested archives, and Minecraft/NeoForge/
 BlueMap implementation classes. The complete factual record is
 `provenance/upstreams.json`.
+
+The frozen 2026-08-16 candidate embeds that file verbatim, including
+`"status": "unreleased-implementation"`. This value is an artifact-time marker
+for the state in which the candidate bytes were frozen, not a mutable summary
+of later operational tests. It remains accurate while owner acceptance and
+publication are pending. It must not be rewritten merely to retrofit the
+subsequent staging, exact-client, disabled-control, or rollback results into
+the already identified candidate; those observations are recorded in the
+project documentation instead. A future version may update the marker through
+the normal reviewed build and release process.

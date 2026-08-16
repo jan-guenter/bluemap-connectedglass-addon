@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0-alpha.1 — unreleased
+## 0.1.0-alpha.1 — unreleased candidate
 
 - Lock the exact Connected Glass 1.1.14 and Fusion 1.3.12 artifacts from All
   the Mons 1.2.0.
@@ -10,5 +10,7 @@
   multipart pane rendering, collision-safe generated tiles, and atomic stock
   fallback.
 - Add the deterministic eight-cell, 71-placement, 72-observation gallery.
-- Keep exact-client pane-cap calibration, isolated BlueMap staging, owner visual
-  acceptance, and publication pending.
+- Pass the 2026-08-16 isolated BlueMap active-route/gallery render, exact-client
+  vertical-pane calibration, restart-scoped disabled control, and physical-JAR
+  rollback lifecycle with the 155,396-byte frozen candidate.
+- Keep owner visual acceptance and publication explicitly pending.

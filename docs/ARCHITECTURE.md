@@ -42,8 +42,11 @@ attributed BlueMap renderer mechanics.
 Same-ID full cubes cull shared faces. Pane arm ends cull only for reciprocal
 native arms. For top/bottom pane quads, geometric centroid classifies the
 center post or one cardinal arm; only the corresponding overlap in a same-ID
-vertical neighbor is removed. Exact-client gallery calibration of this
-modifier behavior is mandatory before release.
+vertical neighbor is removed. On 2026-08-16, exact-client calibration passed
+for both representative two-block-high straight and cross pane stacks: the
+client and BlueMap each omitted the internal horizontal caps while retaining
+the external geometry. Repeating this calibration remains mandatory after any
+profile, modifier, or emitter change.
 
 ## Failure policy
 
@@ -56,3 +59,8 @@ Capacity exceptions are never converted to fallback.
 The add-on registers no blocks, items, entities, menus, commands, packets, or
 required client resources. Removing its JAR and restarting restores stock
 BlueMap behavior.
+
+That removal invariant was exercised on the disposable host on 2026-08-16.
+The active 425-program route, operator-disabled stock control, and physical-JAR
+removal were each observed in separate clean starts; the final stock render
+completed after prior add-on output and aliases were removed.

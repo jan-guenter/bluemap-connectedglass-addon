@@ -43,10 +43,10 @@ jobs:
         with:
           python-version: '3.13'
 
-      - name: Set up Gradle 9.4.0
+      - name: Set up Gradle 9.6.1
         uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
         with:
-          gradle-version: '9.4.0'
+          gradle-version: '9.6.1'
           cache-read-only: ${{ github.event_name == 'pull_request' }}
 
       - name: Acquire exact ephemeral runtime input
@@ -59,6 +59,17 @@ jobs:
           curl --fail --location --retry 3 --retry-all-errors \
             --output "${input_dir}/fusion-1.3.12-neoforge-mc1.21.1.jar" \
             "https://cdn.modrinth.com/data/p19vrgc2/versions/6Oxgpgr9/fusion-1.3.12-neoforge-mc1.21.1.jar"
+          test "$(stat -c %s "${input_dir}/connectedglass-1.1.14-neoforge-mc1.21.jar")" \
+            -eq 819976
+          test "$(stat -c %s "${input_dir}/fusion-1.3.12-neoforge-mc1.21.1.jar")" \
+            -eq 923270
+          (
+            cd "${input_dir}"
+            sha256sum --check <<'SHA256SUMS'
+          e5b2a1cd8ef1b8a49a322aeccfc5cd9a53d8303613b9f30718f12a1e525d49fe  connectedglass-1.1.14-neoforge-mc1.21.jar
+          17f5215648a98bcde4134577b013200dbf363273ae282449c51408ae8346f2fa  fusion-1.3.12-neoforge-mc1.21.1.jar
+          SHA256SUMS
+          )
 
       - name: Run the authoritative review gate once
         run: |

@@ -2,8 +2,10 @@
 
 This standalone MIT BlueMap add-on restores the connected textures and pane
 models installed by Connected Glass 1.1.14 and Fusion 1.3.12 on the exact All
-the Mons 1.2.0 baseline. It is currently under implementation and is not yet a
-published or owner-accepted release.
+the Mons 1.2.0 baseline. The frozen `0.1.0-alpha.1` candidate passed its
+technical staging, exact-client calibration, disabled-control, and physical
+rollback gates on 2026-08-16. Owner visual acceptance and publication remain
+pending, so this is not yet a supported release.
 
 ## Exact contract
 
@@ -47,14 +49,38 @@ properties.
 
 Same-ID full cubes cull shared faces. Pane arm ends cull only across reciprocal
 native arms. Vertical pane caps are removed per overlapping geometric piece;
-the representative two-layer pane cases remain a required exact-client
-calibration before release.
+the representative two-layer straight and cross pane stacks matched the exact
+client on 2026-08-16, with no internal horizontal caps. This calibration
+remains a required regression gate for any changed profile or renderer.
 
 Any tuple, structural-resource, host-ABI, or registry mismatch leaves the
 whole route inactive. An invalid individual state or render observation
 atomically discards partial geometry and uses BlueMap's stock path.
 `MaxCapacityReachedException` propagates unchanged. Dimension-preserving PNG
 pixel overrides remain supported; structural overrides do not.
+
+## Technical validation status
+
+The frozen production JAR is 155,396 bytes with SHA-256
+`eb1dc07a6f9906f83a710e175cb8c119f0464bda73f651fa13a6e24900ffb70e`.
+On the reusable disposable host, the 2026-08-16 lifecycle established:
+
+- an active exact-profile route with all 425 programs after byte-exact input
+  and BlueMap pack-root-order checks;
+- all eight gallery cells, 71 placements, and 72 observations verified with
+  zero failed cells and zero failures, followed by a completed BlueMap render;
+- agreement between the exact client and BlueMap for the representative cube,
+  pane, and two-layer vertical-pane cases;
+- an `operator-disabled` restart control that restored the expected incorrect
+  stock Connected Glass rendering; and
+- physical add-on/alias removal, clean restart, and successful stock rerender,
+  after which the disposable Deployment was scaled to zero with no Pods.
+
+The agent-side BlueMap sanity check passed while the active candidate was
+rendered. The later rollback deliberately replaced that output with the stock
+control, so it is not a current owner-review endpoint. These technical results
+do not constitute owner visual acceptance or release authorization. See
+[docs/STAGING.md](docs/STAGING.md) and [docs/ROLLBACK.md](docs/ROLLBACK.md).
 
 ## Generate and validate
 

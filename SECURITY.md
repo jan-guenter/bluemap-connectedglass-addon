@@ -1,9 +1,11 @@
 # Security policy
 
-This unreleased alpha has no supported production version. Report suspected
-resource-parser denial of service, namespace collision, archive traversal,
-activation bypass, unsafe fallback, or publication-boundary defects privately
-to the repository owner before public disclosure.
+This technically staged but unreleased alpha candidate has no supported
+production version. Its 2026-08-16 disposable-host pass is not production
+authorization or a support commitment. Report suspected resource-parser denial
+of service, namespace collision, archive traversal, activation bypass, unsafe
+fallback, or publication-boundary defects privately to the repository owner
+before public disclosure.
 
 The parser is intentionally bounded to exact artifacts, a fixed 737-path
 closure, a separate three-path host-model ABI, 256 KiB per model, five

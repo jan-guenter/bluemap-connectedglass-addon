@@ -22,6 +22,34 @@ client priority without duplicating their All Rights Reserved bytes. The
 add-on and gallery are uploaded to the private
 `/data/.bluemap-sophisticated-staging` directory and hash-verified before use.
 
+## Completed 2026-08-16 lifecycle
+
+The frozen inputs above completed the technical lifecycle on the disposable
+host:
+
+- exact init hashes passed, and BlueMap placed
+  `zz-0246-connectedglass.zip` before `zz-0049-fusion.zip`, then the add-on and
+  mod roots;
+- a read-only probe reported the exact route `ACTIVE`, detail `exact-profile`,
+  and `catalogSize=425`;
+- the gallery reported eight cells, 71 placements, 72 observations, all 72
+  checked, zero failed cells, zero total failures, and zero failures in every
+  case 01 through 08;
+- the forced active render reached no pending tasks without relevant tile,
+  capacity, out-of-memory, fallback, or inactive-route errors;
+- the exact client and BlueMap agreed on the representative custom cells,
+  including two-high straight and cross pane stacks without internal
+  horizontal caps;
+- the restart-scoped disabled control reported `operator-disabled` with a null
+  catalog and produced the expected stock mismatch; and
+- physical removal deleted the exact add-on, aliases, and prior rendered map
+  output, after which a clean stock startup and 23-tile render completed.
+
+The final observed state was zero Deployment replicas and no Minecraft Pods.
+The active public map output was deliberately replaced by the stock rollback
+render, so the host is not currently presenting the candidate for owner review.
+Owner visual acceptance and publication remain pending.
+
 ## Controlled sequence
 
 Use kubeconfig `/root/.kube/guenter-cloud`, context `guenter.cloud`, and
