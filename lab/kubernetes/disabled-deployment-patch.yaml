@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft
+  namespace: bluemap-sophisticated-staging
+spec:
+  replicas: 0
+  template:
+    metadata:
+      annotations:
+        bluemap.guenter.cloud/connectedglass-mode: "exact-profile-disabled-control"
+    spec:
+      containers:
+        - name: minecraft
+          env:
+            - name: BLUEMAP_CONNECTEDGLASS_DISABLED_PROFILES
+              value: connectedglass-fusion-1.1.14-1.3.12

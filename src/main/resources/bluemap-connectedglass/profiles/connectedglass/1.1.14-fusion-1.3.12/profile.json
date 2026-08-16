@@ -1,0 +1,61 @@
+{
+  "assetPolicy": "operator-installed-only",
+  "connectionPrograms": {
+    "default": 68,
+    "pane_side": 204,
+    "same_block": 153
+  },
+  "counts": {
+    "allBlockstates": 119,
+    "directFusionModels": 425,
+    "fusionMetadata": 68,
+    "hostGeometryModels": 3,
+    "modelClosure": 430,
+    "modelModifiers": 1,
+    "resourceClosure": 737,
+    "routedBlocks": 119,
+    "routedLegalStates": 1700,
+    "textures": 119
+  },
+  "digests": {
+    "blockstateRoster": "42f516bb1847dab2d86aae75593c92c703e384d55a1ffe89de4ba787a9e80023",
+    "definitions": "7a6fae7eff1af518044ac1ccd31fe18965403b09c7c6a1733ee6d119b196ec2e",
+    "directModelRoster": "61d9e6fd44a64e2f253ac05f8aba41056b9216f6cc38c9ac3eef2413f029b6fe",
+    "fullCubeRoster": "5ddf17a1451a8158b24b2923f6f25a03d9c334ae3682812d3a7c5607da08681b",
+    "hostGeometryModels": "7eddb8d22e773bea816d180e8fe93d89ab7e0bd770e8520a0eb15b6a573d0230",
+    "legalStateRoster": "65a55b1ee27d4b90845e30fd41166a5c014cc3637b48788cb79c7eef34a7adb9",
+    "metadataRoster": "7e389fd428143f6b827391adc2d15f02a6ec8a4ac58caf13e1d436dfe0b46fcf",
+    "modelRoster": "a04e7bd6474af198a01c2e08c6a58a8629de46b65b8c741bec0da1e9846cc258",
+    "modifierTargetRoster": "445a71e4283a6b6943bae9825a02564a24f99892219b2029ddb650d480e98a60",
+    "paneRoster": "e8addad49b35323bca21b2e951fb9f805e9d2bb160a88aa9c5d843a33b04d730",
+    "pngRoster": "7f462b426c0b136c29364f0762afa183688d977b67c31a4e475ca7eb5c4be013",
+    "requiredResources": "fc8ec7afadcb3fd22566a8879a1cb03e14c880d32803e6ba01d0a751f33030c0",
+    "resourcePathClosure": "651a2b74e897295353e6a53f950fbbd14dba8859623007060d5036a3b972b042",
+    "textures": "4f85fd5084dd1a78c1882d3f34cc4535f3268dd2a65bdfb90a39cc5346019363"
+  },
+  "failurePolicy": "route-wide-inactive-or-atomic-stock-fallback",
+  "formatOwner": "fusion",
+  "hostGeometryAbi": {
+    "clientJarSha256": "499f6897d1837516680f3114072d8106e11c9adcd933fe5cf051b551089b0c99",
+    "owner": "minecraft",
+    "pathsAreOutsideConnectedGlassClosure": true
+  },
+  "layouts": {
+    "pieced": 68,
+    "plain": 51
+  },
+  "namespaceOwner": "connectedglass",
+  "predicateTypes": [
+    "fusion:is_direction",
+    "fusion:is_same_block",
+    "fusion:match_state",
+    "fusion:or"
+  ],
+  "profileId": "connectedglass-fusion-1.1.14-1.3.12",
+  "schema": 1,
+  "shapes": {
+    "full": 68,
+    "pane": 51
+  },
+  "textureOverridePolicy": "pixel-only-exact-dimensions"
+}

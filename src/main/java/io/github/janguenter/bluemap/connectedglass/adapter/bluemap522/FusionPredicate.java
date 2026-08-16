@@ -1,0 +1,83 @@
+/*
+ * SPDX-License-Identifier: MIT
+ *
+ * This bounded predicate tree is independently authored from the exact JSON
+ * schema and observable behavior. It contains no Fusion implementation code.
+ */
+package io.github.janguenter.bluemap.connectedglass.adapter.bluemap522;
+
+import de.bluecolored.bluemap.core.world.BlockState;
+import io.github.janguenter.bluemap.connectedglass.model.FusionDirection;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+/** Exact native-state predicate lane used by the ConnectedGlass profile. */
+sealed interface FusionPredicate permits FusionPredicate.Any,
+        FusionPredicate.DirectionIn, FusionPredicate.MatchState,
+        FusionPredicate.SameBlock, FusionPredicate.Never {
+
+    boolean test(BlockState own, BlockState neighbor, FusionDirection direction);
+
+    record Any(List<FusionPredicate> predicates) implements FusionPredicate {
+        public Any {
+            predicates = List.copyOf(predicates);
+        }
+
+        @Override
+        public boolean test(BlockState own, BlockState neighbor, FusionDirection direction) {
+            for (FusionPredicate predicate : predicates) {
+                if (predicate.test(own, neighbor, direction)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    record DirectionIn(Set<FusionDirection> directions) implements FusionPredicate {
+        public DirectionIn {
+            directions = Set.copyOf(directions);
+        }
+
+        @Override
+        public boolean test(BlockState own, BlockState neighbor, FusionDirection direction) {
+            return directions.contains(direction);
+        }
+    }
+
+    record MatchState(String blockId, Map<String, Set<String>> properties)
+            implements FusionPredicate {
+        public MatchState {
+            properties = Map.copyOf(properties);
+        }
+
+        @Override
+        public boolean test(BlockState own, BlockState neighbor, FusionDirection direction) {
+            if (!blockId.equals(neighbor.getId().getFormatted())) {
+                return false;
+            }
+            for (Map.Entry<String, Set<String>> entry : properties.entrySet()) {
+                if (!entry.getValue().contains(neighbor.getProperties().get(entry.getKey()))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    record SameBlock() implements FusionPredicate {
+        @Override
+        public boolean test(BlockState own, BlockState neighbor, FusionDirection direction) {
+            return !neighbor.isAir() && own.getId().equals(neighbor.getId());
+        }
+    }
+
+    record Never() implements FusionPredicate {
+        @Override
+        public boolean test(BlockState own, BlockState neighbor, FusionDirection direction) {
+            return false;
+        }
+    }
+}

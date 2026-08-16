@@ -1,0 +1,8 @@
+{
+  "id": "bluemap_connectedglass",
+  "name": "BlueMap Connected Glass Add-on",
+  "entrypoint": "io.github.janguenter.bluemap.connectedglass.BlueMapConnectedGlassAddon",
+  "version": "${version}",
+  "dependencies": [],
+  "soft-dependencies": []
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "project_license": "MIT",
+  "status": "unreleased-implementation",
+  "implementation_lane": "independent-mit-code-plus-operator-installed-resource-interpreter",
+  "baseline": {
+    "pack": "All the Mons 1.2.0",
+    "pack_commit": "c7bb230f21d14d26859d0b92548f089b3a493ad9",
+    "minecraft": "1.21.1",
+    "neoforge": "21.1.248",
+    "java": 21
+  },
+  "bluemap": {
+    "backport_version": "5.22-agent.backport-5.22-mc1.21.1-2",
+    "backport_commit": "9be321df995a1103808621d529eb72773e719d4d",
+    "release_jar_sha256": "749f7647fa29764cea113114a7ab3259271bab3da22720989f2bd9fd1f3ba150",
+    "declared_license": "MIT",
+    "role": "renderer-semantics adaptation with retained attribution",
+    "bundled": false
+  },
+  "implementation_source": {
+    "name": "BlueMap Rechiseled Add-on",
+    "repository": "https://github.com/jan-guenter/bluemap-rechiseled-addon",
+    "peeled_tag_commit": "8588d99388c213b938d79931dd6d9e9ef8e4099c",
+    "declared_license": "MIT",
+    "role": "scaffold and independently authored Fusion-resource interpreter substrate",
+    "binary_bundled": false,
+    "assets_bundled": false
+  },
+  "artifacts": {
+    "connectedglass": {
+      "version": "1.1.14",
+      "file_name": "connectedglass-1.1.14-neoforge-mc1.21.jar",
+      "size": 819976,
+      "sha1": "0a44c13d6744e0eeec5bf38f58756a8e86e96f55",
+      "sha256": "e5b2a1cd8ef1b8a49a322aeccfc5cd9a53d8303613b9f30718f12a1e525d49fe",
+      "sha512": "c0db64151d850d568386b4c287e75fa882a4590802a0a9bc0eec7d47240e56dbc3215b4edede97204d7817afc097cba5e438a66eb58b956213b2289e342823a5",
+      "curseforge": {"project": 383129, "file": 6811960},
+      "modrinth": {"project": "DghO0R02", "version": "vF1S4Mfu"},
+      "declared_license": "All rights reserved",
+      "source_correlation": "not asserted; no upstream source used",
+      "bundled": false
+    },
+    "fusion": {
+      "version": "1.3.12",
+      "file_name": "fusion-1.3.12-neoforge-mc1.21.1.jar",
+      "size": 923270,
+      "sha1": "79c0c6b6a2d9c9a04298df9a88bb71a93e885235",
+      "sha256": "17f5215648a98bcde4134577b013200dbf363273ae282449c51408ae8346f2fa",
+      "sha512": "a13d2a654988f021106f8a455134da1b515872e9122cf70bda064e663749f1c11aeddc3def23a621e236f2ffeefb6f56b15c2c63eeb2bca5f9833c5a2dc23a93",
+      "curseforge": {"project": 854949, "file": 8536618},
+      "modrinth": {"project": "p19vrgc2", "version": "6Oxgpgr9"},
+      "declared_license": "All rights reserved",
+      "source_correlation": "not asserted; no upstream source used",
+      "bundled": false
+    }
+  },
+  "coverage": {
+    "routed_blocks": 119,
+    "routed_legal_states": 1700,
+    "full_cubes": 68,
+    "panes": 51,
+    "direct_fusion_models": 425,
+    "model_resource_closure": 430,
+    "png_resources": 119,
+    "fusion_metadata_resources": 68,
+    "model_modifiers": 1,
+    "resource_closure_paths": 737,
+    "host_model_abi_paths": 3,
+    "route_manifest_sha256": "100525b8119d6246971f3ba09d786072b89fb61e85cb8e6f2d86ce68ab7133f4",
+    "atlas_audit_manifest_sha256": "f1418a061a729ad79a633cc74be6168242869a67180569efde51996e6c382dc8"
+  },
+  "third_party_code_bundled": false,
+  "third_party_assets_bundled": false
+}
