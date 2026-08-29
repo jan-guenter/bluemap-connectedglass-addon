@@ -90,7 +90,9 @@ deployment authorization. See [docs/STAGING.md](docs/STAGING.md) and
 ## Generate and validate
 
 Java 21 and the exact local BlueMap backport are required. Example exact local
-inputs:
+inputs follow. Clone with `--recurse-submodules`, or initialize an existing
+checkout with `git submodule update --init --recursive`, before invoking
+Gradle.
 
 ```bash
 connectedglass_jar='/absolute/path/connectedglass-1.1.14-neoforge-mc1.21.jar'
