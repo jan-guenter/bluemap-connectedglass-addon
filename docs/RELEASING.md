@@ -1,5 +1,32 @@
 # Releasing
 
+Version `0.1.0-alpha.2` is a source-consolidation candidate. Its exact
+production JAR identity is recorded outside the packaged provenance in
+`provenance/release.json`. The `0.1.0-alpha.1` authorization and frozen hashes
+below do not authorize publishing changed `0.1.0-alpha.2` assets.
+
+Initialize both source submodules before any gate:
+
+```bash
+git submodule update --init --recursive -- \
+  tooling/bluemap-addon-toolkit modules/bluemap-fusion-resource-models
+```
+
+The settings preflight must accept both gitlinks and reject a changed Fusion
+module HEAD, index, worktree, or `src/main/java` tree.
+
+The locally sealed `0.1.0-alpha.2` payloads are:
+
+| Asset | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `bluemap-connectedglass-addon-0.1.0-alpha.2.jar` | 158,546 | `f73841c78da88808bbb9a5a630526e75902a2c56bfc9f7600ccbc39d3572e446` |
+| `bluemap-connectedglass-addon-0.1.0-alpha.2-sources.jar` | 94,085 | `ee652f580e614e6dd52db181519d50a38183e001b8e2239e3d829bc8f49b4da9` |
+| `bluemap-connectedglass-addon-0.1.0-alpha.2.pom` | 1,375 | `3f6a1e8250bd0dbf62ff046605e7d3d3bec80ae6b8a24444c14aa7f2306c38ec` |
+| `bluemap-connectedglass-addon-0.1.0-alpha.2.module.json` | 2,868 | `c76ad74c76aedf7886060071cad0507aa1d81f745fb39e7972b50095fbc78f59` |
+
+Two clean local builds produced byte-identical copies of all four payloads.
+`provenance/release.json` is the machine-readable lock.
+
 The owner explicitly accepted the frozen candidate's visual result on
 2026-08-16 after its exact-client pane calibration, isolated BlueMap staging,
 restart-scoped disabled control, and physical rollback passed. Publication of

@@ -14,6 +14,10 @@ base {
     archivesName = artifact_id
 }
 
+sourceSets {
+    main.java.srcDir 'modules/bluemap-fusion-resource-models/src/main/java'
+}
+
 repositories {
     mavenCentral()
     maven {
@@ -31,6 +35,10 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.11.4')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(AbstractArchiveTask).configureEach {
+    includeEmptyDirs = false
 }
 
 tasks.named('test', Test).configure {
@@ -102,6 +110,39 @@ tasks.named('sourcesJar', Jar).configure {
 
 def productionJar = tasks.named('jar', Jar).flatMap { it.archiveFile }
 def publishedSourcesJar = tasks.named('sourcesJar', Jar).flatMap { it.archiveFile }
+def sharedFusionPackage = 'io/github/janguenter/bluemap/resource/fusion/model/'
+def sharedFusionClasses = [
+        "${sharedFusionPackage}AxisVector.class",
+        "${sharedFusionPackage}FusionDirection.class",
+        "${sharedFusionPackage}FusionTextureLayout.class",
+        "${sharedFusionPackage}FusionTextureSelector\$1.class",
+        "${sharedFusionPackage}FusionTextureSelector.class",
+        "${sharedFusionPackage}TextureOrientation\$1.class",
+        "${sharedFusionPackage}TextureOrientation\$Frame.class",
+        "${sharedFusionPackage}TextureOrientation.class"
+].collect { it.toString() }
+def sharedFusionSources = [
+        "${sharedFusionPackage}AxisVector.java",
+        "${sharedFusionPackage}FusionDirection.java",
+        "${sharedFusionPackage}FusionTextureLayout.java",
+        "${sharedFusionPackage}FusionTextureSelector.java",
+        "${sharedFusionPackage}TextureOrientation.java"
+].collect { it.toString() }
+def legacyFusionClasses = [
+        'io/github/janguenter/bluemap/connectedglass/model/AxisVector.class',
+        'io/github/janguenter/bluemap/connectedglass/model/FusionDirection.class',
+        'io/github/janguenter/bluemap/connectedglass/model/FusionTextureSelector$1.class',
+        'io/github/janguenter/bluemap/connectedglass/model/FusionTextureSelector.class',
+        'io/github/janguenter/bluemap/connectedglass/model/TextureOrientation$1.class',
+        'io/github/janguenter/bluemap/connectedglass/model/TextureOrientation$Frame.class',
+        'io/github/janguenter/bluemap/connectedglass/model/TextureOrientation.class'
+]
+def legacyFusionSources = [
+        'io/github/janguenter/bluemap/connectedglass/model/AxisVector.java',
+        'io/github/janguenter/bluemap/connectedglass/model/FusionDirection.java',
+        'io/github/janguenter/bluemap/connectedglass/model/FusionTextureSelector.java',
+        'io/github/janguenter/bluemap/connectedglass/model/TextureOrientation.java'
+]
 tasks.register('verifyProductionJar') {
     dependsOn tasks.named('jar')
     inputs.file(productionJar)
@@ -125,10 +166,16 @@ tasks.register('verifyProductionJar') {
                     'META-INF/NOTICE-bluemap-connectedglass-addon.md',
                     'META-INF/THIRD_PARTY-bluemap-connectedglass-addon.md',
                     'META-INF/bluemap-connectedglass/upstreams.json'
-            ]
+            ] + sharedFusionClasses
             def missing = required.findAll { !entries.contains(it) }
-            if (!missing.isEmpty()) {
-                throw new GradleException("Production JAR is missing: ${missing}")
+            def duplicateShared = sharedFusionClasses.findAll { shared ->
+                entries.count { it == shared } != 1
+            }
+            if (!missing.isEmpty() || !duplicateShared.isEmpty()) {
+                throw new GradleException(
+                        "Production JAR shared boundary mismatch: missing=${missing}, "
+                                + "nonUnique=${duplicateShared}"
+                )
             }
             def addon = new groovy.json.JsonSlurper().parseText(
                     zip.getInputStream(zip.getEntry('bluemap.addon.json')).getText('UTF-8')
@@ -161,13 +208,16 @@ tasks.register('verifyProductionJar') {
             )) {
                 throw new GradleException('Production JAR provenance payload drifted')
             }
+            def foreignClasses = entries.findAll {
+                it.endsWith('.class')
+                        && !it.startsWith('io/github/janguenter/bluemap/connectedglass/')
+                        && !sharedFusionClasses.contains(it)
+            }
             def forbidden = entries.findAll {
                 it.endsWith('.jar')
                         || it.endsWith('.zip')
                         || it.endsWith('.png')
                         || it.endsWith('.mcmeta')
-                        || (it.endsWith('.class')
-                        && !it.startsWith('io/github/janguenter/bluemap/connectedglass/'))
                         || it == 'META-INF/neoforge.mods.toml'
                         || it == 'fabric.mod.json'
                         || it.endsWith('.mixins.json')
@@ -182,9 +232,15 @@ tasks.register('verifyProductionJar') {
                         || it.startsWith('de/maxhenkel/')
                         || it.startsWith('net/minecraft/')
                         || it.startsWith('net/neoforged/')
+                        || legacyFusionClasses.contains(it)
+                        || (it.startsWith(sharedFusionPackage)
+                        && !sharedFusionClasses.contains(it))
             }
-            if (!forbidden.isEmpty()) {
-                throw new GradleException("Production JAR contains forbidden entries: ${forbidden}")
+            if (!foreignClasses.isEmpty() || !forbidden.isEmpty()) {
+                throw new GradleException(
+                        "Production JAR boundary mismatch: foreignClasses=${foreignClasses}, "
+                                + "forbidden=${forbidden}"
+                )
             }
         } finally {
             zip.close()
@@ -216,14 +272,21 @@ tasks.register('verifySourcesJar') {
                     'META-INF/NOTICE-bluemap-connectedglass-addon.md',
                     'META-INF/THIRD_PARTY-bluemap-connectedglass-addon.md',
                     'META-INF/bluemap-connectedglass/upstreams.json'
-            ]
+            ] + sharedFusionSources
             def missing = required.findAll { !entries.contains(it) }
-            if (!missing.isEmpty()) {
-                throw new GradleException("Sources JAR is missing: ${missing}")
+            def duplicateShared = sharedFusionSources.findAll { shared ->
+                entries.count { it == shared } != 1
+            }
+            if (!missing.isEmpty() || !duplicateShared.isEmpty()) {
+                throw new GradleException(
+                        "Sources JAR shared boundary mismatch: missing=${missing}, "
+                                + "nonUnique=${duplicateShared}"
+                )
             }
             def projectJava = entries.findAll { it.endsWith('.java') }
             def foreignJava = projectJava.findAll {
                 !it.startsWith('io/github/janguenter/bluemap/connectedglass/')
+                        && !sharedFusionSources.contains(it)
             }
             def allowedProjectAssets = Set.of(
                     'assets/bluemap_connectedglass/blockstates/fusion_model.json'
@@ -265,6 +328,9 @@ tasks.register('verifySourcesJar') {
                         || it.startsWith('de/maxhenkel/')
                         || it.startsWith('net/minecraft/')
                         || it.startsWith('net/neoforged/')
+                        || legacyFusionSources.contains(it)
+                        || (it.startsWith(sharedFusionPackage)
+                        && !sharedFusionSources.contains(it))
             }
             if (projectJava.isEmpty() || !foreignJava.isEmpty() || !forbidden.isEmpty()) {
                 throw new GradleException(

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project_license": "MIT",
-  "status": "unreleased-implementation",
+  "status": "fusion-source-module-migration-candidate",
   "implementation_lane": "independent-mit-code-plus-operator-installed-resource-interpreter",
   "baseline": {
     "pack": "All the Mons 1.2.0",
@@ -27,6 +27,19 @@
     "binary_bundled": false,
     "assets_bundled": false
   },
+  "shared_source_modules": [
+    {
+      "name": "BlueMap Fusion Resource Models",
+      "repository": "https://github.com/jan-guenter/bluemap-fusion-resource-models",
+      "version": "0.1.0-alpha.1",
+      "commit": "3ddd5d39bb7cc8664c242aedd849a636316075c2",
+      "source_tree": "6e85031ff2f0e7417a7a2fb0babbf7ed5a4f218a",
+      "declared_license": "MIT",
+      "integration": "exact gitlink-pinned sources compiled into the consumer",
+      "source_files_bundled": 5,
+      "binary_bundled": false
+    }
+  ],
   "artifacts": {
     "connectedglass": {
       "version": "1.1.14",

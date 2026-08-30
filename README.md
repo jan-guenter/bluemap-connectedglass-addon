@@ -2,7 +2,11 @@
 
 This standalone MIT BlueMap add-on restores the connected textures and pane
 models installed by Connected Glass 1.1.14 and Fusion 1.3.12 on the exact All
-the Mons 1.2.0 baseline. The frozen `0.1.0-alpha.1` candidate passed its
+the Mons 1.2.0 baseline. Version `0.1.0-alpha.2` source-bundles the released
+MIT BlueMap Fusion Resource Models module from an exact gitlink. The module
+replaces four repository-local helper/selector types without changing the
+two-layout profile, predicates, route, fallback, or emitter. The frozen
+`0.1.0-alpha.1` candidate passed its
 technical staging, exact-client calibration, disabled-control, and physical
 rollback gates on 2026-08-16. The owner explicitly accepted the candidate's
 visual result on 2026-08-16 and authorized publication as the immutable
@@ -61,6 +65,11 @@ atomically discards partial geometry and uses BlueMap's stock path.
 `MaxCapacityReachedException` propagates unchanged. Dimension-preserving PNG
 pixel overrides remain supported; structural overrides do not.
 
+The shared module supplies axis arithmetic, direction masks, texture
+orientation, layout names, and sheet selection. `TextureLayout` remains local
+and maps by enum name at the selector call. Only `PLAIN` and `PIECED` are
+admitted by this profile.
+
 ## Technical validation status
 
 The frozen production JAR is 155,396 bytes with SHA-256
@@ -92,7 +101,8 @@ deployment authorization. See [docs/STAGING.md](docs/STAGING.md) and
 Java 21 and the exact local BlueMap backport are required. Example exact local
 inputs follow. Clone with `--recurse-submodules`, or initialize an existing
 checkout with `git submodule update --init --recursive`, before invoking
-Gradle.
+Gradle. The settings preflight rejects a missing, dirty, staged, wrong-commit,
+or source-tree-mismatched Fusion module checkout.
 
 ```bash
 connectedglass_jar='/absolute/path/connectedglass-1.1.14-neoforge-mc1.21.jar'
@@ -114,8 +124,10 @@ gradle --no-daemon \
   generateMetadataFileForAddonPublication verifyPinnedArtifacts
 ```
 
-The binary and sources JAR gates reject upstream namespaces, assets, data,
-classes, and nested archives.
+The binary and sources JAR gates require the exact shared class/source roster
+once and reject displaced local types, upstream namespaces, assets, data,
+foreign classes, and nested archives. The sealed `0.1.0-alpha.2` publication
+payload identities are recorded in `provenance/release.json`.
 
 ## Gallery
 

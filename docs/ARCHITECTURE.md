@@ -4,6 +4,7 @@
 
 ```text
 BlueMap ResourcePack construction
+  -> verify exact Fusion model source gitlink, index, HEAD, clean state, and source tree
   -> detect exactly one Connected Glass 1.1.14 JAR and one Fusion 1.3.12 JAR
   -> validate first-wins 737-path structural closure
   -> validate three Minecraft host-model ABI paths
@@ -38,6 +39,11 @@ the face-local texture frame, evaluate eight neighbors, and either select a
 whole 16x16 cell or split the polygon into four UV quadrants. Geometry,
 lighting, tint, AO, cave/top-only behavior, map color, and UV-lock follow the
 attributed BlueMap renderer mechanics.
+
+Five neutral model types compile from the exact source-module gitlink into the
+add-on JAR. The consumer-local `TextureLayout` maps by enum name only at the
+selector call. Resource admission, profile parsing, predicates, tile catalogs,
+route activation, fallback, and mesh emission remain local.
 
 Same-ID full cubes cull shared faces. Pane arm ends cull only for reciprocal
 native arms. For top/bottom pane quads, geometric centroid classifies the

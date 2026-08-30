@@ -7,7 +7,7 @@
 package io.github.janguenter.bluemap.connectedglass.adapter.bluemap522;
 
 import de.bluecolored.bluemap.core.world.BlockState;
-import io.github.janguenter.bluemap.connectedglass.model.FusionDirection;
+import io.github.janguenter.bluemap.resource.fusion.model.FusionDirection;
 
 import java.util.List;
 import java.util.Map;

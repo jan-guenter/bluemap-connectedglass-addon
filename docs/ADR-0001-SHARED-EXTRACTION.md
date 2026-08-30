@@ -1,20 +1,24 @@
-# ADR 0001: keep the Fusion interpreter repository-local
+# ADR 0001: source-bundle the stable Fusion model helpers
+
+- Status: supersedes the first-release repository-local decision
+- Date: 2026-08-30
 
 ## Decision
 
-Keep the adapted MIT Fusion interpreter source in this standalone Connected
-Glass add-on for the first release. It owns only the exact generated
-`connectedglass:*` allowlist and provides no runtime service to other add-ons.
+Pin BlueMap Fusion Resource Models `0.1.0-alpha.1` as an exact source
+submodule. Compile its five neutral model types into this add-on, while keeping
+the exact generated `connectedglass:*` allowlist and every runtime policy
+local. The module is not an installed service or nested JAR.
 
 ## Rationale
 
-Rechiseled and Connected Glass are now two consumers, but their exact product
-contracts differ materially: layout roster, predicate schema, multipart panes,
-state validation, and culling rules. Extracting a shared artifact before both
-implementations are independently accepted would freeze the wrong boundary and
-couple rollback/release mechanics.
+Connected Glass, Glassential, Rechiseled, and Rechiseled Create now provide
+accepted, independently reviewed evidence for the same axis, direction,
+orientation, and selector behavior. The module contains that stable code only.
+Connected Glass remains the independent two-layout pilot and maps its local
+layout enum by name.
 
-After Connected Glass and the next Glassential consumer are accepted, compare
-the three reviewed implementations. Only then consider a separate stable MIT
-source module. Fusion remains a source interpreter, never an installed block
-owner or runtime provider.
+Predicate schemas, multipart panes, state validation, culling, resource
+admission, catalogs, routes, fallback, and emitters remain consumer-specific.
+The exact gitlink, checkout HEAD, clean state, and source tree fail closed
+before Gradle loads the shared sources.

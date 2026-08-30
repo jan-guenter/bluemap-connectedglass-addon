@@ -56,15 +56,16 @@ import de.bluecolored.bluemap.core.world.BlockState;
 import de.bluecolored.bluemap.core.world.LightData;
 import de.bluecolored.bluemap.core.world.block.BlockNeighborhood;
 import de.bluecolored.bluemap.core.world.block.ExtendedBlock;
-import io.github.janguenter.bluemap.connectedglass.model.AxisVector;
-import io.github.janguenter.bluemap.connectedglass.model.FusionDirection;
-import io.github.janguenter.bluemap.connectedglass.model.FusionTextureSelector;
-import io.github.janguenter.bluemap.connectedglass.model.TextureOrientation;
 import io.github.janguenter.bluemap.connectedglass.profile.ConnectedGlass1114Fusion1312Profile;
 import io.github.janguenter.bluemap.connectedglass.profile.ConnectedGlassDefinition;
 import io.github.janguenter.bluemap.connectedglass.profile.ShapeFamily;
 import io.github.janguenter.bluemap.connectedglass.profile.TextureCatalog;
 import io.github.janguenter.bluemap.connectedglass.profile.TextureLayout;
+import io.github.janguenter.bluemap.resource.fusion.model.AxisVector;
+import io.github.janguenter.bluemap.resource.fusion.model.FusionDirection;
+import io.github.janguenter.bluemap.resource.fusion.model.FusionTextureLayout;
+import io.github.janguenter.bluemap.resource.fusion.model.FusionTextureSelector;
+import io.github.janguenter.bluemap.resource.fusion.model.TextureOrientation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -216,7 +217,9 @@ final class FusionModelEmitter {
         TextureOrientation.Frame frame = textureFrame(finalDirection, vertices);
         FusionPredicate predicate = program.predicate(materialKey);
         int mask = connections(predicate, frame);
-        int tile = FusionTextureSelector.tile(texture.layout(), mask);
+        int tile = FusionTextureSelector.tile(
+                FusionTextureLayout.valueOf(texture.layout().name()), mask
+        );
         if (texture.layout() == TextureLayout.PIECED && tile < 0) {
             return emitPieced(vertices, ao, mask, frame, light, face);
         }
