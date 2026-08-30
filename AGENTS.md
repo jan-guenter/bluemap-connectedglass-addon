@@ -9,6 +9,9 @@ and portfolio guides, this README, `docs/ARCHITECTURE.md`,
 
 - Java 21, Minecraft 1.21.1, and BlueMap 5.22 backport commit
   `9be321df995a1103808621d529eb72773e719d4d`.
+- Source-bundle BlueMap Fusion Resource Models `0.1.0-alpha.1` only from
+  commit `3ddd5d39bb7cc8664c242aedd849a636316075c2`, source tree
+  `6e85031ff2f0e7417a7a2fb0babbf7ed5a4f218a`.
 - Own only the generated 119-ID `connectedglass:*` allowlist: 68 full cubes,
   51 panes, and exactly 1,700 legal states.
 - Never register `fusion:*`, route another namespace, or add a runtime provider
@@ -28,6 +31,8 @@ and portfolio guides, this README, `docs/ARCHITECTURE.md`,
   `bluemap_connectedglass:fusion_model`.
 - Do not change cluster, production, remotes, tags, or releases without the
   separate operational/release gate.
+- Keep local profile parsing, predicates, catalogs, routes, fallback, and
+  emission policy outside the shared Fusion model package.
 
 ## Generated inputs
 

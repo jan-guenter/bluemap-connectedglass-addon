@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "status": "owner-accepted-release-candidate",
+  "version": "0.1.0-alpha.2",
+  "release_date": "2026-08-30",
+  "repository": "https://github.com/jan-guenter/bluemap-connectedglass-addon",
+  "tag": "v0.1.0-alpha.2",
+  "maven_coordinate": "io.github.jan-guenter:bluemap-connectedglass-addon:0.1.0-alpha.2",
+  "fusion_source_migration": {
+    "module": "io.github.jan-guenter:bluemap-fusion-resource-models:0.1.0-alpha.1",
+    "repository": "https://github.com/jan-guenter/bluemap-fusion-resource-models",
+    "commit": "3ddd5d39bb7cc8664c242aedd849a636316075c2",
+    "source_tree": "6e85031ff2f0e7417a7a2fb0babbf7ed5a4f218a",
+    "source_files_bundled": 5,
+    "resulting_class_files": 8,
+    "displaced_local_types": 4,
+    "layout_mapping": "TextureLayout.name() to FusionTextureLayout.valueOf(String)",
+    "admitted_layouts": ["PLAIN", "PIECED"],
+    "module_jar_nested_or_installed": false
+  },
+  "final_release_artifacts": {
+    "production_jar": {
+      "file_name": "bluemap-connectedglass-addon-0.1.0-alpha.2.jar",
+      "size": 158546,
+      "sha256": "f73841c78da88808bbb9a5a630526e75902a2c56bfc9f7600ccbc39d3572e446"
+    },
+    "sources_jar": {
+      "file_name": "bluemap-connectedglass-addon-0.1.0-alpha.2-sources.jar",
+      "size": 94085,
+      "sha256": "ee652f580e614e6dd52db181519d50a38183e001b8e2239e3d829bc8f49b4da9"
+    },
+    "pom": {
+      "file_name": "bluemap-connectedglass-addon-0.1.0-alpha.2.pom",
+      "size": 1375,
+      "sha256": "3f6a1e8250bd0dbf62ff046605e7d3d3bec80ae6b8a24444c14aa7f2306c38ec"
+    },
+    "gradle_module": {
+      "file_name": "bluemap-connectedglass-addon-0.1.0-alpha.2.module.json",
+      "size": 2868,
+      "sha256": "c76ad74c76aedf7886060071cad0507aa1d81f745fb39e7972b50095fbc78f59"
+    }
+  },
+  "verification": {
+    "exact_input_tuple": true,
+    "java_tests": 30,
+    "python_tests": 12,
+    "layout_mask_parity_cases": 512,
+    "pieced_direction_mask_parity_cases": 2048,
+    "clean_builds_compared": 2,
+    "all_four_payloads_byte_reproducible": true,
+    "production_archive_shared_class_count": 8,
+    "sources_archive_shared_source_count": 5,
+    "legacy_local_types_absent": true,
+    "actionlint": true,
+    "hostile_submodule_probes": [
+      "uninitialized",
+      "dirty",
+      "wrong-head",
+      "wrong-index"
+    ]
+  },
+  "immutable_packaged_provenance": {
+    "path": "provenance/upstreams.json",
+    "note": "Implementation provenance is packaged in both JARs. Release-only payload identities remain outside the archives."
+  }
+}

@@ -7,7 +7,10 @@ Supported only for this exact tuple:
 - Minecraft 1.21.1, NeoForge 21.1.248, Java 21;
 - BlueMap backport commit `9be321df995a1103808621d529eb72773e719d4d`;
 - Connected Glass 1.1.14, 819,976 bytes, SHA-256 `e5b2a1cd...d49fe`;
-- Fusion 1.3.12, 923,270 bytes, SHA-256 `17f52156...f2fa`.
+- Fusion 1.3.12, 923,270 bytes, SHA-256 `17f52156...f2fa`;
+- BlueMap Fusion Resource Models `0.1.0-alpha.1`, commit
+  `3ddd5d39bb7cc8664c242aedd849a636316075c2`, source tree
+  `6e85031ff2f0e7417a7a2fb0babbf7ed5a4f218a`.
 
 This is an evidence lock, not a range claim. A pack, mod, Minecraft, loader,
 or BlueMap change requires a fresh artifact/resource census, regenerated

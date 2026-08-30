@@ -3,8 +3,13 @@
 pluginManagement {
     def toolkitPath = 'tooling/bluemap-addon-toolkit'
     def expectedToolkitCommit = '6cd34a8368cc4ee8628fbe830a90ec5b14960629'
+    def fusionModelsPath = 'modules/bluemap-fusion-resource-models'
+    def expectedFusionModelsCommit = '3ddd5d39bb7cc8664c242aedd849a636316075c2'
+    def expectedFusionModelsSourceTree = '6e85031ff2f0e7417a7a2fb0babbf7ed5a4f218a'
     def consumerRoot = settings.settingsDir
     def toolkit = new File(consumerRoot, toolkitPath)
+    def fusionModels = new File(consumerRoot, fusionModelsPath)
+    def fusionModelsSource = new File(fusionModels, 'src/main/java')
 
     if (!(expectedToolkitCommit ==~ /[0-9a-f]{40}/)
             || !new File(consumerRoot, '.git').exists()
@@ -13,6 +18,16 @@ pluginManagement {
         throw new GradleException(
                 'Toolkit trust preflight is not configured or initialized. '
                         + "Run: git submodule update --init --recursive -- ${toolkitPath}"
+        )
+    }
+    if (!(expectedFusionModelsCommit ==~ /[0-9a-f]{40}/)
+            || !(expectedFusionModelsSourceTree ==~ /[0-9a-f]{40}/)
+            || !fusionModels.isDirectory()
+            || !new File(fusionModels, '.git').exists()
+            || !fusionModelsSource.isDirectory()) {
+        throw new GradleException(
+                'Fusion model trust preflight is not configured or initialized. '
+                        + "Run: git submodule update --init --recursive -- ${fusionModelsPath}"
         )
     }
 
@@ -59,6 +74,39 @@ pluginManagement {
              '--ignore-submodules=none'], 'verify the toolkit worktree')
     if (toolkitHead != expectedToolkitCommit || !toolkitStatus.isEmpty()) {
         throw new GradleException('Toolkit HEAD differs from the gitlink or is dirty')
+    }
+
+    def fusionModelsTree = toolkitGitOutput(consumerRoot,
+            ['ls-tree', 'HEAD', '--', fusionModelsPath],
+            'read the committed Fusion model gitlink').tokenize(' \t')
+    def fusionModelsIndex = toolkitGitOutput(consumerRoot,
+            ['ls-files', '--stage', '--', fusionModelsPath],
+            'read the indexed Fusion model gitlink').tokenize(' \t')
+    if (fusionModelsTree.size() != 4 || fusionModelsTree[0] != '160000'
+            || fusionModelsTree[1] != 'commit'
+            || fusionModelsTree[2] != expectedFusionModelsCommit
+            || fusionModelsTree[3] != fusionModelsPath
+            || fusionModelsIndex.size() != 4 || fusionModelsIndex[0] != '160000'
+            || fusionModelsIndex[1] != expectedFusionModelsCommit
+            || fusionModelsIndex[2] != '0' || fusionModelsIndex[3] != fusionModelsPath) {
+        throw new GradleException(
+                'Committed/indexed Fusion model gitlink does not match its pin'
+        )
+    }
+
+    def fusionModelsHead = toolkitGitOutput(fusionModels,
+            ['rev-parse', '--verify', 'HEAD^{commit}'], 'read Fusion model HEAD')
+    def fusionModelsTreeHash = toolkitGitOutput(fusionModels,
+            ['rev-parse', 'HEAD:src/main/java'], 'read Fusion model source tree')
+    def fusionModelsStatus = toolkitGitOutput(fusionModels,
+            ['status', '--porcelain=v1', '--untracked-files=all',
+             '--ignore-submodules=none'], 'verify the Fusion model worktree')
+    if (fusionModelsHead != expectedFusionModelsCommit
+            || fusionModelsTreeHash != expectedFusionModelsSourceTree
+            || !fusionModelsStatus.isEmpty()) {
+        throw new GradleException(
+                'Fusion model HEAD/source tree differs from the pin or is dirty'
+        )
     }
 
     def gradleBuild = new File(toolkit, 'gradle')
