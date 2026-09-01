@@ -1,31 +1,31 @@
 # Releasing
 
-Version `0.1.0-alpha.2` is a source-consolidation candidate. Its exact
-production JAR identity is recorded outside the packaged provenance in
-`provenance/release.json`. The `0.1.0-alpha.1` authorization and frozen hashes
-below do not authorize publishing changed `0.1.0-alpha.2` assets.
+Version `0.1.0-alpha.3` is the owner-accepted BlueMap 5.23 migration candidate.
+Its exact payload identities are recorded outside the packaged provenance in
+`provenance/release.json`. This preparation does not itself tag or publish it.
 
 Initialize both source submodules before any gate:
 
 ```bash
 git submodule update --init --recursive -- \
-  tooling/bluemap-addon-toolkit modules/bluemap-fusion-resource-models
+  tooling/bluemap-addon-toolkit modules/bluemap-addon-adapter-api \
+  modules/bluemap-fusion-resource-models
 ```
 
-The settings preflight must accept both gitlinks and reject a changed Fusion
-module HEAD, index, worktree, or `src/main/java` tree.
+The settings preflight must accept all three gitlinks and reject changed
+Adapter API or Fusion module HEADs, indexes, worktrees, or source trees.
 
-The locally sealed `0.1.0-alpha.2` payloads are:
+The locally sealed `0.1.0-alpha.3` payloads are:
 
 | Asset | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `bluemap-connectedglass-addon-0.1.0-alpha.2.jar` | 158,546 | `f73841c78da88808bbb9a5a630526e75902a2c56bfc9f7600ccbc39d3572e446` |
-| `bluemap-connectedglass-addon-0.1.0-alpha.2-sources.jar` | 94,085 | `ee652f580e614e6dd52db181519d50a38183e001b8e2239e3d829bc8f49b4da9` |
-| `bluemap-connectedglass-addon-0.1.0-alpha.2.pom` | 1,375 | `3f6a1e8250bd0dbf62ff046605e7d3d3bec80ae6b8a24444c14aa7f2306c38ec` |
-| `bluemap-connectedglass-addon-0.1.0-alpha.2.module.json` | 2,868 | `c76ad74c76aedf7886060071cad0507aa1d81f745fb39e7972b50095fbc78f59` |
+| `bluemap-connectedglass-addon-0.1.0-alpha.3.jar` | 162,427 | `a4ee3f4e398f2bdec3739724027d785e2697417dad92d73dcdb06bbd2a7df240` |
+| `bluemap-connectedglass-addon-0.1.0-alpha.3-sources.jar` | 97,878 | `8e915cae85791999be39ea54617b2cff8810313aaf231e0d8bbb8619cfd007be` |
+| `bluemap-connectedglass-addon-0.1.0-alpha.3.pom` | 1,375 | `a81211e01fe5ef67512abf00a53905026740a0167c141aa206b3011135e943a1` |
+| `bluemap-connectedglass-addon-0.1.0-alpha.3.module.json` | 2,868 | `c6c2dc8017a18fd2ece32ce21d2ec6d171d955337dbdb28e28f2aa34f94e7b8a` |
 
-Two clean local builds produced byte-identical copies of all four payloads.
-`provenance/release.json` is the machine-readable lock.
+The release workflow rebuilds all four payloads twice and compares them before
+publication. `provenance/release.json` is the machine-readable lock.
 
 The owner explicitly accepted the frozen candidate's visual result on
 2026-08-16 after its exact-client pane calibration, isolated BlueMap staging,
