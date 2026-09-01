@@ -4,7 +4,7 @@
  * This bounded predicate tree is independently authored from the exact JSON
  * schema and observable behavior. It contains no Fusion implementation code.
  */
-package io.github.janguenter.bluemap.connectedglass.adapter.bluemap522;
+package io.github.janguenter.bluemap.connectedglass.adapter.bluemap523;
 
 import de.bluecolored.bluemap.core.world.BlockState;
 import io.github.janguenter.bluemap.resource.fusion.model.FusionDirection;

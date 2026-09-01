@@ -2,7 +2,8 @@
 
 | Component | Role | Exact identity | License | Bundled |
 | --- | --- | --- | --- | --- |
-| BlueMap | Compile-time ABI and adapted renderer mechanics | Backport `5.22-agent.backport-5.22-mc1.21.1-2`, commit `9be321df995a1103808621d529eb72773e719d4d` | MIT | License notice only |
+| BlueMap | Compile-time ABI and adapted renderer mechanics | Feature backport `5.22-feature.backport-5.23-stateless-java-web-server-46`, commit `7e07f4e74ec1e92a6ead9aa1e66054af3e133aac` | MIT | License notice only |
+| BlueMap Add-on Adapter API | Four narrow 5.23 adapter helpers | `0.1.0-alpha.2`, commit `e81f08bc4bfbf02d810ec8949a019130e2e61634`, source tree `2f974c9bb2ba13888d69682f86f30f58922d30eb` | MIT | Four sources compile into this add-on; no module JAR |
 | BlueMap Rechiseled Add-on | First-party scaffold and independent Fusion interpreter substrate | peeled tag commit `8588d99388c213b938d79931dd6d9e9ef8e4099c` | MIT | Source adapted; no binary/assets |
 | BlueMap Fusion Resource Models | First-party neutral Fusion model source | `0.1.0-alpha.1`, commit `3ddd5d39bb7cc8664c242aedd849a636316075c2`, source tree `6e85031ff2f0e7417a7a2fb0babbf7ed5a4f218a` | MIT | Five sources compile into this add-on; no module JAR |
 | Connected Glass | Operator-installed blocks/models/textures | `1.1.14`, 819,976 bytes, SHA-256 `e5b2a1cd8ef1b8a49a322aeccfc5cd9a53d8303613b9f30718f12a1e525d49fe` | All Rights Reserved | No |
