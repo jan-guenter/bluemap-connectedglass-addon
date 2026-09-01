@@ -23,6 +23,7 @@ The locally sealed `0.1.0-alpha.3` payloads are:
 | `bluemap-connectedglass-addon-0.1.0-alpha.3-sources.jar` | 97,878 | `8e915cae85791999be39ea54617b2cff8810313aaf231e0d8bbb8619cfd007be` |
 | `bluemap-connectedglass-addon-0.1.0-alpha.3.pom` | 1,375 | `a81211e01fe5ef67512abf00a53905026740a0167c141aa206b3011135e943a1` |
 | `bluemap-connectedglass-addon-0.1.0-alpha.3.module.json` | 2,868 | `c6c2dc8017a18fd2ece32ce21d2ec6d171d955337dbdb28e28f2aa34f94e7b8a` |
+| `SHA256SUMS` | 476 | `73dadc46db4200e6957a9a19aad3c7857ca57ca2d7ef7794212ef43b7034df0c` |
 
 The release workflow rebuilds all four payloads twice and compares them before
 publication. `provenance/release.json` is the machine-readable lock.

@@ -11,6 +11,8 @@
 - Preserve the accepted 119-ID, 1,700-state Connected Glass route and Fusion
   source module without changing its rendering policy.
 - Pass the combined All the Mons 1.2.0 staging render accepted on 2026-09-01.
+- Lock the five-asset GitHub Release checksum manifest used by resumable
+  publication of the immutable tag.
 
 ## 0.1.0-alpha.2 — 2026-08-30
 
