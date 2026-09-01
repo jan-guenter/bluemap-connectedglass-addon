@@ -29,7 +29,7 @@
  * sheet selection, and UV clipping are independently authored from the exact
  * installed schema and observable behavior. See docs/PROVENANCE.md.
  */
-package io.github.janguenter.bluemap.connectedglass.adapter.bluemap522;
+package io.github.janguenter.bluemap.connectedglass.adapter.bluemap523;
 
 import com.flowpowered.math.TrigMath;
 import com.flowpowered.math.vector.Vector3f;
@@ -107,7 +107,7 @@ final class FusionModelEmitter {
         this.textureGallery = textureGallery;
         this.renderSettings = renderSettings;
         this.blockColorCalculator = resourcePack.createBlockColorCalculator();
-        this.extension = BlueMap522Adapter.extension(resourcePack);
+        this.extension = BlueMap523Adapter.extension(resourcePack);
     }
 
     boolean render(

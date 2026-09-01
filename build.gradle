@@ -15,7 +15,10 @@ base {
 }
 
 sourceSets {
-    main.java.srcDir 'modules/bluemap-fusion-resource-models/src/main/java'
+    main.java.srcDirs(
+            'modules/bluemap-addon-adapter-api/src/main/java',
+            'modules/bluemap-fusion-resource-models/src/main/java'
+    )
 }
 
 repositories {
@@ -74,6 +77,14 @@ tasks.named('jar', Jar).configure {
     from('LICENSE-BlueMap') {
         into 'META-INF'
     }
+    from('modules/bluemap-addon-adapter-api/LICENSE') {
+        into 'META-INF'
+        rename { 'LICENSE-bluemap-addon-adapter-api' }
+    }
+    from('modules/bluemap-fusion-resource-models/LICENSE') {
+        into 'META-INF'
+        rename { 'LICENSE-bluemap-fusion-resource-models' }
+    }
     from('NOTICE.md') {
         into 'META-INF'
         rename { 'NOTICE-bluemap-connectedglass-addon.md' }
@@ -95,6 +106,14 @@ tasks.named('sourcesJar', Jar).configure {
     from('LICENSE-BlueMap') {
         into 'META-INF'
     }
+    from('modules/bluemap-addon-adapter-api/LICENSE') {
+        into 'META-INF'
+        rename { 'LICENSE-bluemap-addon-adapter-api' }
+    }
+    from('modules/bluemap-fusion-resource-models/LICENSE') {
+        into 'META-INF'
+        rename { 'LICENSE-bluemap-fusion-resource-models' }
+    }
     from('NOTICE.md') {
         into 'META-INF'
         rename { 'NOTICE-bluemap-connectedglass-addon.md' }
@@ -110,6 +129,20 @@ tasks.named('sourcesJar', Jar).configure {
 
 def productionJar = tasks.named('jar', Jar).flatMap { it.archiveFile }
 def publishedSourcesJar = tasks.named('sourcesJar', Jar).flatMap { it.archiveFile }
+def sharedAdapterApiPackage =
+        'io/github/janguenter/bluemap/addon/adapter/api/bluemap523/'
+def sharedAdapterApiClasses = [
+        'BlueMapRuntimeCompatibility.class',
+        'RegistryGuard.class',
+        'ResourceExtensionType.class',
+        'SyntheticDispatch.class'
+].collect { sharedAdapterApiPackage + it }
+def sharedAdapterApiSources = [
+        'BlueMapRuntimeCompatibility.java',
+        'RegistryGuard.java',
+        'ResourceExtensionType.java',
+        'SyntheticDispatch.java'
+].collect { sharedAdapterApiPackage + it }
 def sharedFusionPackage = 'io/github/janguenter/bluemap/resource/fusion/model/'
 def sharedFusionClasses = [
         "${sharedFusionPackage}AxisVector.class",
@@ -128,6 +161,14 @@ def sharedFusionSources = [
         "${sharedFusionPackage}FusionTextureSelector.java",
         "${sharedFusionPackage}TextureOrientation.java"
 ].collect { it.toString() }
+def approvedSharedClasses = sharedAdapterApiClasses + sharedFusionClasses
+def approvedSharedSources = sharedAdapterApiSources + sharedFusionSources
+def legacyLocalAdapterPackage =
+        'io/github/janguenter/bluemap/connectedglass/adapter/bluemap522/'
+def displacedAdapterHelpers = [
+        'io/github/janguenter/bluemap/connectedglass/adapter/bluemap523/AdapterCompatibility',
+        'io/github/janguenter/bluemap/connectedglass/adapter/bluemap523/ConnectedGlassResourceExtensionType'
+]
 def legacyFusionClasses = [
         'io/github/janguenter/bluemap/connectedglass/model/AxisVector.class',
         'io/github/janguenter/bluemap/connectedglass/model/FusionDirection.class',
@@ -163,12 +204,14 @@ tasks.register('verifyProductionJar') {
                     'bluemap-connectedglass/profiles/connectedglass/1.1.14-fusion-1.3.12/host-models.tsv',
                     'META-INF/LICENSE-bluemap-connectedglass-addon',
                     'META-INF/LICENSE-BlueMap',
+                    'META-INF/LICENSE-bluemap-addon-adapter-api',
+                    'META-INF/LICENSE-bluemap-fusion-resource-models',
                     'META-INF/NOTICE-bluemap-connectedglass-addon.md',
                     'META-INF/THIRD_PARTY-bluemap-connectedglass-addon.md',
                     'META-INF/bluemap-connectedglass/upstreams.json'
-            ] + sharedFusionClasses
+            ] + approvedSharedClasses
             def missing = required.findAll { !entries.contains(it) }
-            def duplicateShared = sharedFusionClasses.findAll { shared ->
+            def duplicateShared = approvedSharedClasses.findAll { shared ->
                 entries.count { it == shared } != 1
             }
             if (!missing.isEmpty() || !duplicateShared.isEmpty()) {
@@ -211,7 +254,7 @@ tasks.register('verifyProductionJar') {
             def foreignClasses = entries.findAll {
                 it.endsWith('.class')
                         && !it.startsWith('io/github/janguenter/bluemap/connectedglass/')
-                        && !sharedFusionClasses.contains(it)
+                        && !approvedSharedClasses.contains(it)
             }
             def forbidden = entries.findAll {
                 it.endsWith('.jar')
@@ -232,7 +275,11 @@ tasks.register('verifyProductionJar') {
                         || it.startsWith('de/maxhenkel/')
                         || it.startsWith('net/minecraft/')
                         || it.startsWith('net/neoforged/')
+                        || it.startsWith(legacyLocalAdapterPackage)
+                        || displacedAdapterHelpers.any { helper -> it.startsWith(helper) }
                         || legacyFusionClasses.contains(it)
+                        || (it.startsWith(sharedAdapterApiPackage)
+                        && !sharedAdapterApiClasses.contains(it))
                         || (it.startsWith(sharedFusionPackage)
                         && !sharedFusionClasses.contains(it))
             }
@@ -259,7 +306,7 @@ tasks.register('verifySourcesJar') {
             def entries = zip.entries().findAll { !it.directory }.collect { it.name }
             def required = [
                     'io/github/janguenter/bluemap/connectedglass/BlueMapConnectedGlassAddon.java',
-                    'io/github/janguenter/bluemap/connectedglass/adapter/bluemap522/ConnectedGlassRenderer.java',
+                    'io/github/janguenter/bluemap/connectedglass/adapter/bluemap523/ConnectedGlassRenderer.java',
                     'bluemap.addon.json',
                     'bluemap-connectedglass/profiles/exact-artifacts.json',
                     'bluemap-connectedglass/profiles/connectedglass/1.1.14-fusion-1.3.12/profile.json',
@@ -269,12 +316,14 @@ tasks.register('verifySourcesJar') {
                     'bluemap-connectedglass/profiles/connectedglass/1.1.14-fusion-1.3.12/host-models.tsv',
                     'META-INF/LICENSE-bluemap-connectedglass-addon',
                     'META-INF/LICENSE-BlueMap',
+                    'META-INF/LICENSE-bluemap-addon-adapter-api',
+                    'META-INF/LICENSE-bluemap-fusion-resource-models',
                     'META-INF/NOTICE-bluemap-connectedglass-addon.md',
                     'META-INF/THIRD_PARTY-bluemap-connectedglass-addon.md',
                     'META-INF/bluemap-connectedglass/upstreams.json'
-            ] + sharedFusionSources
+            ] + approvedSharedSources
             def missing = required.findAll { !entries.contains(it) }
-            def duplicateShared = sharedFusionSources.findAll { shared ->
+            def duplicateShared = approvedSharedSources.findAll { shared ->
                 entries.count { it == shared } != 1
             }
             if (!missing.isEmpty() || !duplicateShared.isEmpty()) {
@@ -286,7 +335,7 @@ tasks.register('verifySourcesJar') {
             def projectJava = entries.findAll { it.endsWith('.java') }
             def foreignJava = projectJava.findAll {
                 !it.startsWith('io/github/janguenter/bluemap/connectedglass/')
-                        && !sharedFusionSources.contains(it)
+                        && !approvedSharedSources.contains(it)
             }
             def allowedProjectAssets = Set.of(
                     'assets/bluemap_connectedglass/blockstates/fusion_model.json'
@@ -328,7 +377,11 @@ tasks.register('verifySourcesJar') {
                         || it.startsWith('de/maxhenkel/')
                         || it.startsWith('net/minecraft/')
                         || it.startsWith('net/neoforged/')
+                        || it.startsWith(legacyLocalAdapterPackage)
+                        || displacedAdapterHelpers.any { helper -> it == "${helper}.java" }
                         || legacyFusionSources.contains(it)
+                        || (it.startsWith(sharedAdapterApiPackage)
+                        && !sharedAdapterApiSources.contains(it))
                         || (it.startsWith(sharedFusionPackage)
                         && !sharedFusionSources.contains(it))
             }

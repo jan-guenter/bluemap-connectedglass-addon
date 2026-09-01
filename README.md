@@ -2,11 +2,12 @@
 
 This standalone MIT BlueMap add-on restores the connected textures and pane
 models installed by Connected Glass 1.1.14 and Fusion 1.3.12 on the exact All
-the Mons 1.2.0 baseline. Version `0.1.0-alpha.2` source-bundles the released
-MIT BlueMap Fusion Resource Models module from an exact gitlink. The module
-replaces four repository-local helper/selector types without changing the
-two-layout profile, predicates, route, fallback, or emitter. The frozen
-`0.1.0-alpha.1` candidate passed its
+the Mons 1.2.0 baseline. Version `0.1.0-alpha.3` targets the exact BlueMap 5.23
+feature backport and source-bundles the released MIT Adapter API and Fusion
+Resource Models modules from exact gitlinks. The migration replaces local
+registry, extension, and dispatch helpers without changing the two-layout
+profile, predicates, route, fallback, or emitter. The frozen `0.1.0-alpha.1`
+candidate passed its
 technical staging, exact-client calibration, disabled-control, and physical
 rollback gates on 2026-08-16. The owner explicitly accepted the candidate's
 visual result on 2026-08-16 and authorized publication as the immutable
@@ -72,8 +73,8 @@ admitted by this profile.
 
 ## Technical validation status
 
-The frozen production JAR is 155,396 bytes with SHA-256
-`eb1dc07a6f9906f83a710e175cb8c119f0464bda73f651fa13a6e24900ffb70e`.
+The accepted `0.1.0-alpha.3` production JAR is 162,427 bytes with SHA-256
+`a4ee3f4e398f2bdec3739724027d785e2697417dad92d73dcdb06bbd2a7df240`.
 On the reusable disposable host, the 2026-08-16 lifecycle established:
 
 - an active exact-profile route with all 425 programs after byte-exact input
@@ -101,8 +102,8 @@ deployment authorization. See [docs/STAGING.md](docs/STAGING.md) and
 Java 21 and the exact local BlueMap backport are required. Example exact local
 inputs follow. Clone with `--recurse-submodules`, or initialize an existing
 checkout with `git submodule update --init --recursive`, before invoking
-Gradle. The settings preflight rejects a missing, dirty, staged, wrong-commit,
-or source-tree-mismatched Fusion module checkout.
+Gradle. The settings preflight rejects missing, dirty, staged, wrong-commit,
+or source-tree-mismatched Adapter API and Fusion module checkouts.
 
 ```bash
 connectedglass_jar='/absolute/path/connectedglass-1.1.14-neoforge-mc1.21.jar'
@@ -126,7 +127,7 @@ gradle --no-daemon \
 
 The binary and sources JAR gates require the exact shared class/source roster
 once and reject displaced local types, upstream namespaces, assets, data,
-foreign classes, and nested archives. The sealed `0.1.0-alpha.2` publication
+foreign classes, and nested archives. The sealed `0.1.0-alpha.3` publication
 payload identities are recorded in `provenance/release.json`.
 
 ## Gallery

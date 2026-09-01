@@ -1,11 +1,21 @@
 {
   "schema_version": 1,
   "status": "owner-accepted-release-candidate",
-  "version": "0.1.0-alpha.2",
-  "release_date": "2026-08-30",
+  "version": "0.1.0-alpha.3",
+  "release_date": "2026-09-01",
   "repository": "https://github.com/jan-guenter/bluemap-connectedglass-addon",
-  "tag": "v0.1.0-alpha.2",
-  "maven_coordinate": "io.github.jan-guenter:bluemap-connectedglass-addon:0.1.0-alpha.2",
+  "tag": "v0.1.0-alpha.3",
+  "maven_coordinate": "io.github.jan-guenter:bluemap-connectedglass-addon:0.1.0-alpha.3",
+  "adapter_api_migration": {
+    "module": "io.github.jan-guenter:bluemap-addon-adapter-api:0.1.0-alpha.2",
+    "repository": "https://github.com/jan-guenter/bluemap-addon-adapter-api",
+    "commit": "e81f08bc4bfbf02d810ec8949a019130e2e61634",
+    "source_tree": "2f974c9bb2ba13888d69682f86f30f58922d30eb",
+    "source_files_bundled": 4,
+    "local_helpers_removed": 3,
+    "bluemap_commit": "7e07f4e74ec1e92a6ead9aa1e66054af3e133aac",
+    "bluemap_api_commit": "285c9a60eff3ac2b0cab308ce1058d1565be0971"
+  },
   "fusion_source_migration": {
     "module": "io.github.jan-guenter:bluemap-fusion-resource-models:0.1.0-alpha.1",
     "repository": "https://github.com/jan-guenter/bluemap-fusion-resource-models",
@@ -20,36 +30,36 @@
   },
   "final_release_artifacts": {
     "production_jar": {
-      "file_name": "bluemap-connectedglass-addon-0.1.0-alpha.2.jar",
-      "size": 158546,
-      "sha256": "f73841c78da88808bbb9a5a630526e75902a2c56bfc9f7600ccbc39d3572e446"
+      "file_name": "bluemap-connectedglass-addon-0.1.0-alpha.3.jar",
+      "size": 162427,
+      "sha256": "a4ee3f4e398f2bdec3739724027d785e2697417dad92d73dcdb06bbd2a7df240"
     },
     "sources_jar": {
-      "file_name": "bluemap-connectedglass-addon-0.1.0-alpha.2-sources.jar",
-      "size": 94085,
-      "sha256": "ee652f580e614e6dd52db181519d50a38183e001b8e2239e3d829bc8f49b4da9"
+      "file_name": "bluemap-connectedglass-addon-0.1.0-alpha.3-sources.jar",
+      "size": 97878,
+      "sha256": "8e915cae85791999be39ea54617b2cff8810313aaf231e0d8bbb8619cfd007be"
     },
     "pom": {
-      "file_name": "bluemap-connectedglass-addon-0.1.0-alpha.2.pom",
+      "file_name": "bluemap-connectedglass-addon-0.1.0-alpha.3.pom",
       "size": 1375,
-      "sha256": "3f6a1e8250bd0dbf62ff046605e7d3d3bec80ae6b8a24444c14aa7f2306c38ec"
+      "sha256": "a81211e01fe5ef67512abf00a53905026740a0167c141aa206b3011135e943a1"
     },
     "gradle_module": {
-      "file_name": "bluemap-connectedglass-addon-0.1.0-alpha.2.module.json",
+      "file_name": "bluemap-connectedglass-addon-0.1.0-alpha.3.module.json",
       "size": 2868,
-      "sha256": "c76ad74c76aedf7886060071cad0507aa1d81f745fb39e7972b50095fbc78f59"
+      "sha256": "c6c2dc8017a18fd2ece32ce21d2ec6d171d955337dbdb28e28f2aa34f94e7b8a"
     }
   },
   "verification": {
     "exact_input_tuple": true,
-    "java_tests": 30,
+    "java_tests": 31,
     "python_tests": 12,
     "layout_mask_parity_cases": 512,
     "pieced_direction_mask_parity_cases": 2048,
     "clean_builds_compared": 2,
     "all_four_payloads_byte_reproducible": true,
-    "production_archive_shared_class_count": 8,
-    "sources_archive_shared_source_count": 5,
+    "production_archive_shared_class_count": 12,
+    "sources_archive_shared_source_count": 9,
     "legacy_local_types_absent": true,
     "actionlint": true,
     "hostile_submodule_probes": [

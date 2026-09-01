@@ -7,8 +7,11 @@ and portfolio guides, this README, `docs/ARCHITECTURE.md`,
 
 ## Boundaries
 
-- Java 21, Minecraft 1.21.1, and BlueMap 5.22 backport commit
-  `9be321df995a1103808621d529eb72773e719d4d`.
+- Java 21, Minecraft 1.21.1, and BlueMap 5.23 feature-backport commit
+  `7e07f4e74ec1e92a6ead9aa1e66054af3e133aac` with API commit
+  `285c9a60eff3ac2b0cab308ce1058d1565be0971`.
+- Release candidate version `0.1.0-alpha.3` uses Adapter API
+  `0.1.0-alpha.2` at commit `e81f08bc4bfbf02d810ec8949a019130e2e61634`.
 - Source-bundle BlueMap Fusion Resource Models `0.1.0-alpha.1` only from
   commit `3ddd5d39bb7cc8664c242aedd849a636316075c2`, source tree
   `6e85031ff2f0e7417a7a2fb0babbf7ed5a4f218a`.

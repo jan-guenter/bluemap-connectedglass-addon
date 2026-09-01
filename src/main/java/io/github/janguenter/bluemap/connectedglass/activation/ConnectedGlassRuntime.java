@@ -3,7 +3,7 @@
  */
 package io.github.janguenter.bluemap.connectedglass.activation;
 
-import io.github.janguenter.bluemap.connectedglass.adapter.bluemap522.FusionProgramCatalog;
+import io.github.janguenter.bluemap.connectedglass.adapter.bluemap523.FusionProgramCatalog;
 
 /** Process-scoped state for the single exact Connected Glass/Fusion route. */
 public final class ConnectedGlassRuntime {

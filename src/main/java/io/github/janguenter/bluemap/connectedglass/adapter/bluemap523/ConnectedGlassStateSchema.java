@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: MIT
  */
-package io.github.janguenter.bluemap.connectedglass.adapter.bluemap522;
+package io.github.janguenter.bluemap.connectedglass.adapter.bluemap523;
 
 import de.bluecolored.bluemap.core.world.BlockState;
 import io.github.janguenter.bluemap.connectedglass.profile.ConnectedGlassDefinition;
