@@ -261,7 +261,7 @@ jobs:
           sha256sum --check SHA256SUMS
           test "$(stat -c %s SHA256SUMS)" -eq 476
           test "$(sha256sum SHA256SUMS | cut -d ' ' -f 1)" = \
-            3702bc7a3be2d7b0902f667fb1cb84a0673ef75e1fbd8bd3b9e8c3857b59de45
+            73dadc46db4200e6957a9a19aad3c7857ca57ca2d7ef7794212ef43b7034df0c
 
       - name: Inspect immutable Maven version
         id: maven

@@ -50,6 +50,11 @@
       "sha256": "c6c2dc8017a18fd2ece32ce21d2ec6d171d955337dbdb28e28f2aa34f94e7b8a"
     }
   },
+  "release_checksum_manifest": {
+    "file_name": "SHA256SUMS",
+    "size": 476,
+    "sha256": "73dadc46db4200e6957a9a19aad3c7857ca57ca2d7ef7794212ef43b7034df0c"
+  },
   "verification": {
     "exact_input_tuple": true,
     "java_tests": 31,
